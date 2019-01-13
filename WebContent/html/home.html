@@ -1,0 +1,171 @@
+<div data-ng-include="'/forum/html/header.html'"></div>
+
+<div data-ng-controller="homeController" data-ng-init="init()" class="margins">
+	
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title">Post question?</h5>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+			
+			<small>Question</small>
+			<h5>{{common.ques.ques}}</h5>
+			<small>Question category</small>
+			<div class="form-group">
+			<select class="form-control" data-ng-model="common.ques.category" data-ng-options="category for category in common.categories">
+			</select>
+			</div>
+			
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-success" data-ng-click="askQuestion()">
+			Confirm
+			</button>
+			<button type="button" class="btn btn-info" data-dismiss="modal">
+			Change
+			</button>
+			<button type="button" class="btn btn-danger" data-ng-click="cancelAskQuestion()">
+			Cancel
+			</button>
+			</div>
+		</div>
+		</div>
+	</div>	
+	
+	<div data-ng-if="!common.noQuestions">
+	<div class="row" style="margin-top: 5%;">
+	
+		<div class="col-lg-9 mt-2">
+		
+		<div data-ng-if="common.askQuestion">
+		<div class="main-container-no-scroll">
+		<div class="row" style="margin-left:-10px;margin-right:-10px;">
+			<div class="col-lg-10">
+			<div class="form-group mt-2">
+			<textarea class="form-control" style="border: 2px solid #ababab;" placeholder="Your question goes here..." data-ng-model="common.ques.ques"></textarea>
+			</div>
+			</div>
+			<div class="col-lg-2">
+			<div class="btn-group-vertical btn-block mt-2">
+			  <button type="button" class="btn btn-info btn-sm" data-ng-click="validateQuestion()">
+			  Submit
+			  </button>
+			  <button type="button" class="btn btn-info btn-sm" data-ng-click="resetQuestion()">
+			  Reset
+			  </button>
+			</div>
+			</div>
+		</div>
+		</div>
+		</div>
+		
+		<div class="main-container-scroll">
+		<div data-ng-repeat="question in allQuestions | filter: common.search.category track by $index">
+			<div class="card mt-2" data-ng-click="getQuestionInfo(question.quesId, question.askedBy)">
+			<strong>{{question.ques}}</strong>
+			<small>{{question.answer.ans}}</small>
+			</div>
+		</div>			
+		</div>
+		</div>
+		<div class="col-lg-3 mt-2">
+		<div>
+		<button class="btn btn-basic btn-block" 
+			data-ng-click="commenceAskQuestion()">
+		<small>Ask a question</small>
+		</button>
+		</div>
+		<div class="side-container mt-2">
+			<div>
+			<strong>QUESTION DETAILS</strong>
+			</div>
+			<hr>
+			<div>
+			<small>Question ID:</small>
+			<small data-ng-bind="selectedQuestion.quesId"></small>
+			</div>
+			<div>
+			<small>Asked By:</small>
+			<small data-ng-bind="questionOwner.userName"></small>
+			</div>
+			<div>
+			<small>Category:</small>
+			<small data-ng-bind="selectedQuestion.category"></small>
+			</div>
+			<div>
+			<small>Likes:</small>
+			<small data-ng-bind="selectedQuestion.likes"></small>
+			</div>
+			<button class="btn btn-basic btn-block mt-1"
+				data-ng-click="likeQuestion()" 
+				data-ng-disabled="selectedQuestion.isLiked">
+				<small>Like this question</small>
+			</button>
+			<button class="btn btn-basic btn-block mt-1"
+				data-ng-click="answerQuestion()">
+				<small>Answer this question</small>
+			</button>
+			<button class="btn btn-basic btn-block mt-1"
+				data-ng-click="viewAnswers()">
+				<small>View all answers</small>
+			</button>
+		</div>
+
+        <div class="side-container mt-2">
+			<div>
+			<strong>QUESTION FILTERS</strong>
+			</div>
+			<hr>
+            <div class="btn-group btn-block mt-2" style="display:flex;">
+              <button type="button" class="btn btn-basic btn-sm"
+                  style="flex:1;" data-ng-click="setFilter('technology')">
+              <span>Technology</span>
+              </button>
+              <button type="button" class="btn btn-basic btn-sm"
+                  style="flex:1;" data-ng-click="setFilter('science')">
+              <span>Science</span>
+              </button>
+            </div>    
+            <div class="btn-group btn-block mt-2">
+              <button type="button" class="btn btn-basic btn-sm"
+                  style="flex:1;" data-ng-click="setFilter('history')">
+              <span>History</span>
+              </button>
+              <button type="button" class="btn btn-basic btn-sm"
+                  style="flex:1;" data-ng-click="setFilter('comics')">
+              <span>Comics</span>
+              </button>
+            </div>
+            <div class="btn-group btn-block mt-2">
+              <button type="button" class="btn btn-basic btn-sm"
+                  style="flex:1;" data-ng-click="setFilter('others')">
+              <span>Others</span>
+              </button>
+              <button type="button" class="btn btn-basic btn-sm"
+                  style="flex:1;" data-ng-click="setFilter('')">
+              <span>All</span>
+              </button>
+            </div> 
+        </div>
+            
+		</div>
+	
+	</div>
+	</div>
+	
+	<div data-ng-if="common.noQuestions">
+	<div class="row" style="margin-top: 10%;">
+	<div class="col-sm-12" style="text-align: center;">
+	<div class="card">
+	<small>No questions!</small>
+	</div>		
+	</div>
+	</div>
+	</div>
+	
+</div>
+
+<div data-ng-include="'/forum/html/footer.html'"></div>

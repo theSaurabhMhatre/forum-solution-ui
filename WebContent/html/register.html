@@ -1,0 +1,64 @@
+<div data-ng-controller="registerController" data-ng-init="init()">
+
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title">Hey there, happy to help you get on board!</h5>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+			
+			<small>Username</small>
+			<input type="text" class="form-control" placeholder="theBatman" data-ng-model="tempUser.userName">
+			<small>Password</small>
+			<input type="password" class="form-control" placeholder="@@##$$%%" data-ng-model="tempUser.userPswd">
+			<small>Confirm Password</small>
+			<input type="password" class="form-control" placeholder="@@##$$%%" data-ng-model="tempUser.userPswdConfirm">
+			<small>Mail</small>
+			<input type="text" class="form-control" placeholder="bruce.wayne@batcave.com" data-ng-model="tempUser.userMail">
+			<small>Describe yourself</small>
+			<input type="text" class="form-control" placeholder="I am Batman B)" data-ng-model="tempUser.userBio">
+			
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-success" data-ng-click="registerUser()">
+			Confirm
+			</button>
+			<button type="button" class="btn btn-danger" data-ng-click="cancelRegistration()">
+			Cancel
+			</button>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<div class="row background">
+		<div class="col-lg-9">
+			
+		</div>
+		<div class="col-lg-3">
+			<div class="register">
+				<div class="form-group">
+					<h6>Hey there, Welcome back!</h6>
+					<small>Username</small>
+					<input type="text" class="form-control" data-ng-model="userCreds.userName">
+					<small>Password</small>
+					<input type="password" class="form-control" data-ng-model="userCreds.userPswd">
+					<button class="btn btn-primary btn-block mt-2" data-ng-click="validateUser()">
+					<small>Login</small>
+					</button>
+					<button class="btn btn-primary btn-block mt-2" data-ng-click="resetCreds()">
+					<small>Reset</small>
+					</button>
+				</div>
+			</div>
+			<div>
+			<button class="btn btn-primary btn-block mt-2" data-toggle="modal" data-target="#myModal">
+			<small>Not a member yet ? Sign up !</small>
+			</button>
+			</div>
+		</div>
+	</div>
+
+</div>

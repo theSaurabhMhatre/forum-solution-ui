@@ -1,0 +1,37 @@
+<div data-ng-include="'/forum/html/header.html'"></div>
+
+<div data-ng-controller="profileController" data-ng-init="init()" class="margins">
+
+	<div class="row" style="margin-top: 5%;">
+		<div class="col-lg-3 mt-2">
+		<div class="card">
+			<strong>BASIC DETAILS</strong>
+			<hr>
+			<small>Username</small>
+			<h4>{{currentUser.userName}}</h4>
+			<small>User Bio</small>
+			<h4>{{currentUser.userBio}}</h4>
+			<small>Email</small>
+			<h4>{{currentUser.userMail}}</h4>					
+		</div>
+		</div>
+		<div class="col-lg-6 mt-2">
+            <div class="container-scroll">
+            </div>
+		</div>
+        <div class="col-lg-3 mt-2">
+        <div class="container-scroll">
+            <strong>LEADERBOARD</strong>
+			<hr>
+            <div data-ng-repeat="userRanking in userRankings track by $index">
+            <button class="btn btn-basic btn-block mt-1" id="popover{{$index}}">
+            <small>{{userRanking[0] | uppercase}}</small>
+			</button>
+            </div>
+        </div>
+        </div>
+	</div>
+
+</div>
+
+<div data-ng-include="'/forum/html/footer.html'"></div>
