@@ -141,6 +141,7 @@ app.controller("answerController", ["$scope", "CacheService", "UserFactory", "Qu
 				AnswerFactory.getAnswersByQuestion(quesId)
 				.then(function(response){
 					// success
+					$scope.common.ans = "";
 					$scope.common.noAnswers = false;
 					var data = response.data.responseObject;
 					$scope.setLikesForAnswers(data);

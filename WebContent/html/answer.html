@@ -1,11 +1,11 @@
 <div data-ng-include="'/forum/html/header.html'"></div>
 
-<div data-ng-controller="answerController" data-ng-init="init()" class="margins">
+<div data-ng-controller="answerController" data-ng-init="init()" class="answer-margins">
 
 	<div class="row" style="margin-top: 5%;">
 		<div class="col-lg-9 mt-2">
-		<div class="main-container">
-		<div class="question-card mt-2">
+		<div class="answer-main-container">
+		<div class="ans-question-card mt-2">
 		<strong>{{selectedQuestion.ques}}</strong>
 		</div>
 		
@@ -27,14 +27,14 @@
 		
 		<div data-ng-if="!common.noAnswers">
 		<div data-ng-repeat="answer in allAnswers track by $index">
-			<div class="answer-card mt-2" data-ng-click="getAnswerInfo($index, answer.answeredBy)">
+			<div class="ans-answer-card mt-2" data-ng-click="getAnswerInfo($index, answer.answeredBy)">
 			<small>{{answer.ans}}</small>
 			</div>
 		</div>
 		</div>
 		
 		<div data-ng-if="common.noAnswers">
-			<div class="answer-card mt-2">
+			<div class="ans-answer-card mt-2">
 			<small>This question has not been answered yet!</small>
 			</div>
 		</div>
@@ -42,9 +42,8 @@
 		</div>
 		</div>
 		<div class="col-lg-3 mt-2">
-		<div class="row">
 
-			<div class="col-lg-12 side-container">
+			<div class="answer-side-container">
 			<div>
 			<strong>QUESTION DETAILS</strong>
 			</div>
@@ -67,7 +66,7 @@
 			</div>
 			</div>
 
-			<div class="col-lg-12 side-container mt-2" data-ng-if="!common.noAnswers">
+			<div class="answer-side-container mt-2" data-ng-if="!common.noAnswers">
 			<div>
 			<strong>ANSWER DETAILS</strong>
 			</div>
@@ -91,7 +90,6 @@
 			</button>
 			</div>
 
-		</div>
 		</div>
 	</div>
 

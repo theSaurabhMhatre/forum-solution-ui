@@ -14,7 +14,7 @@ hr {
 	}
 }
 
-.margins{
+.home-margins{
 	margin-top: 5%;
 	margin-bottom: 5%;
 	margin-left: 10%;
@@ -23,30 +23,37 @@ hr {
 }
 
 @media screen and (max-width: 992px) {
-	.margins{
+	.home-margins{
 		margin-top: 10%;
 		margin-bottom: 5%;
-		margin-left: 10%;
-		margin-right: 10%;
+		margin-left: 2%;
+		margin-right: 2%;
 		min-height: 80%;
 	}
 }
 
-.card{
+.home-card{
 	border: 5px solid;
 	border-color: #ababab;
 	border-radius: 0;
 	padding: 10px;
 }
 
-.side-container{
+.home-answer-card{
+	border: 2px solid;
+	border-color: #ababab;
+	border-radius: 0;
+	padding: 10px;
+}
+
+.home-side-container{
 	border: 5px solid;
 	border-color: #ababab;
 	border-radius: 0;
 	padding: 5px;
 }
 
-.main-container-no-scroll{
+.home-main-container-no-scroll{
 	border: 2px solid;
 	border-color: #ababab;
 	border-radius: 0;
@@ -55,7 +62,7 @@ hr {
 	margin-bottom: 10px;
 }
 
-.main-container-scroll{
+.home-main-container-scroll{
 	border: 2px solid;
 	border-color: #ababab;
 	border-radius: 0;

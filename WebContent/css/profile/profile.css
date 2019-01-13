@@ -14,39 +14,39 @@ hr {
 	}
 }
 
-.margins{
+.profile-margins{
 	margin-top: 5%;
 	margin-bottom: 5%;
-	margin-left: 10%;
-	margin-right: 10%;
+	margin-left: 2%;
+	margin-right: 2%;
 	min-height: 80%;
 }
 
 @media screen and (max-width: 992px) {
-	.margins{
+	.profile-margins{
 		margin-top: 10%;
 		margin-bottom: 5%;
-		margin-left: 10%;
-		margin-right: 10%;
+		margin-left: 2%;
+		margin-right: 2%;
 		min-height: 80%;
 	}
 }
 
-.card{
+.profile-card{
 	border: 5px solid;
 	border-color: #ababab;
 	border-radius: 0;
 	padding: 10px;
 }
 
-.side-container{
+.profile-side-container{
 	border: 5px solid;
 	border-color: #ababab;
 	border-radius: 0;
 	padding: 5px;
 }
 
-.container-scroll{
+.profile-container-scroll{
 	border: 2px solid;
 	border-color: #ababab;
 	border-radius: 0;

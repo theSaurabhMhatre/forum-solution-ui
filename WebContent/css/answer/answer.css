@@ -14,7 +14,7 @@ hr {
 	}
 }
 
-.margins{
+.answer-margins{
 	margin-top: 5%;
 	margin-bottom: 5%;
 	margin-left: 10%;
@@ -23,37 +23,37 @@ hr {
 }
 
 @media screen and (max-width: 992px) {
-	.margins{
+	.answer-margins{
 		margin-top: 10%;
 		margin-bottom: 5%;
-		margin-left: 10%;
-		margin-right: 10%;
+		margin-left: 2%;
+		margin-right: 2%;
 		min-height: 80%;
 	}
 }
 
-.question-card{
+.ans-question-card{
 	border: 5px solid;
 	border-color: #ababab;
 	border-radius: 0;
 	padding: 10px;
 }
 
-.answer-card{
+.ans-answer-card{
 	border: 2px solid;
 	border-color: #ababab;
 	border-radius: 0;
 	padding: 10px;
 }
 
-.side-container{
+.answer-side-container{
 	border: 5px solid;
 	border-color: #ababab;
 	border-radius: 0;
 	padding: 5px;
 }
 
-.main-container{
+.answer-main-container{
 	border: 2px solid;
 	border-color: #ababab;
 	border-radius: 0;

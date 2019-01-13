@@ -1,6 +1,6 @@
 <div data-ng-include="'/forum/html/header.html'"></div>
 
-<div data-ng-controller="homeController" data-ng-init="init()" class="margins">
+<div data-ng-controller="homeController" data-ng-init="init()" class="home-margins">
 	
 	<div class="modal fade" id="myModal">
 		<div class="modal-dialog">
@@ -41,7 +41,7 @@
 		<div class="col-lg-9 mt-2">
 		
 		<div data-ng-if="common.askQuestion">
-		<div class="main-container-no-scroll">
+		<div class="home-main-container-no-scroll">
 		<div class="row" style="margin-left:-10px;margin-right:-10px;">
 			<div class="col-lg-10">
 			<div class="form-group mt-2">
@@ -62,11 +62,13 @@
 		</div>
 		</div>
 		
-		<div class="main-container-scroll">
+		<div class="home-main-container-scroll">
 		<div data-ng-repeat="question in allQuestions | filter: common.search.category track by $index">
-			<div class="card mt-2" data-ng-click="getQuestionInfo(question.quesId, question.askedBy)">
+			<div class="home-card mt-2" data-ng-click="getQuestionInfo(question.quesId, question.askedBy)">
 			<strong>{{question.ques}}</strong>
+			<div class="home-answer-card">
 			<small>{{question.answer.ans}}</small>
+			</div>
 			</div>
 		</div>			
 		</div>
@@ -78,7 +80,7 @@
 		<small>Ask a question</small>
 		</button>
 		</div>
-		<div class="side-container mt-2">
+		<div class="home-side-container mt-2">
 			<div>
 			<strong>QUESTION DETAILS</strong>
 			</div>
@@ -114,7 +116,7 @@
 			</button>
 		</div>
 
-        <div class="side-container mt-2">
+        <div class="home-side-container mt-2">
 			<div>
 			<strong>QUESTION FILTERS</strong>
 			</div>
@@ -159,7 +161,7 @@
 	<div data-ng-if="common.noQuestions">
 	<div class="row" style="margin-top: 10%;">
 	<div class="col-sm-12" style="text-align: center;">
-	<div class="card">
+	<div class="home-card">
 	<small>No questions!</small>
 	</div>		
 	</div>
