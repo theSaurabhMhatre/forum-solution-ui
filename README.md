@@ -21,5 +21,3 @@ This project uses APIs defined in - [forum-solution](https://github.com/theSaura
 - Allow modification of questions and answers
 - Allow non-registered users to browse questions and answers
 - User profile page is incomplete
-  - User details modification console
-  - Section to show questions asked by user and questions answered by user
