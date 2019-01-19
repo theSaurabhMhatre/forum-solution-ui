@@ -46,6 +46,15 @@ hr {
 	padding: 10px;
 }
 
+.ans-selected-answer-card{
+    color: #ffffff;
+    background-color: #949494;
+	border: 2px solid;
+	border-color: #cacaca;
+	border-radius: 0;
+	padding: 10px;
+}
+
 .answer-side-container{
 	border: 5px solid;
 	border-color: #ababab;

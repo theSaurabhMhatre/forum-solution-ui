@@ -3,26 +3,55 @@
 <div data-ng-controller="profileController" data-ng-init="init()" class="profile-margins">
 
 	<div class="row" style="margin-top: 5%;">
-		<div class="col-lg-3 mt-2">
+		<div class="col-lg-2 mt-2">
 		<div class="profile-card">
 			<strong>BASIC DETAILS</strong>
 			<hr>
-			<small>Username</small>
-			<h4>{{currentUser.userName}}</h4>
-			<small>User Bio</small>
-			<h4>{{currentUser.userBio}}</h4>
-			<small>Email</small>
-			<h4>{{currentUser.userMail}}</h4>					
+			<h6>{{currentUser.userName}}</h6>
+			<small>{{currentUser.userMail}}</small>
+		</div>
+		<div style="color: #ffffff; background-color: #ababab; padding: 5px 10px 10px 10px;">
+		<strong>{{currentUser.userBio}}</strong>
+		</div>
+		<div>
+		<button class="btn btn-basic btn-block mt-2" data-ng-click="">
+		<small>Edit Details</small>
+		</button>
+		</div>
+		<div>
+		<button class="btn btn-basic btn-block mt-2" data-ng-click="">
+		<small>Change password</small>
+		</button>
 		</div>
 		</div>
-		<div class="col-lg-6 mt-2">
+		<div class="col-lg-8 mt-2">
             <div class="profile-container-scroll">
+            <strong>QUESTIONS ASKED</strong>
+			<hr>
+            <div data-ng-if="askedQuestions.length > 0" data-ng-repeat="question in askedQuestions">
+            <div class="profile-question-card mt-2" data-ng-click="viewAskedQuestion(question)">
+            {{question.ques}}
+            </div>
+            </div>
+            <div data-ng-if="askedQuestions.length == 0">
+            <h6>You've not asked any questions yet!</h6>	
+            </div>
             </div>
             <div class="profile-container-scroll mt-2">
+            <strong>QUESTIONS ANSWERED</strong>
+			<hr>
+            <div data-ng-if="answeredQuestions.length > 0" data-ng-repeat="question in answeredQuestions">
+            <div class="profile-question-card mt-2" data-ng-click="viewAnsweredQuestion(question)">
+            {{question.ques}}
+            </div>
+            </div>
+            <div data-ng-if="answeredQuestions.length == 0">
+            <h6>You've not answered any questions yet!</h6>	
+            </div>            
             </div>
 		</div>
-        <div class="col-lg-3 mt-2">
-        <div class="profile-container-scroll">
+        <div class="col-lg-2 mt-2">
+        <div class="profile-side-container-scroll">
             <strong>LEADERBOARD</strong>
 			<hr>
             <div data-ng-repeat="userRanking in userRankings track by $index">

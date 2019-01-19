@@ -73,5 +73,39 @@ app.factory("QuestionFactory", ["$http", "$q", "CacheService", function($http, $
 		return deferred.promise;
 	};
 	
+	questionAPIs.getAskedQuestions = function(userId){
+		var deferred = $q.defer();
+		var config = {
+				method: "GET",
+				url: CacheService.server.url + "/questions/" + userId + "/user/asked"
+		}
+		$http(config)
+		.then(function(response){
+			// success
+			deferred.resolve(response);
+		}, function(response){
+			// failure
+			deferred.reject(response);
+		});
+		return deferred.promise;
+	};
+	
+	questionAPIs.getAnsweredQuestions = function(userId){
+		var deferred = $q.defer();
+		var config = {
+				method: "GET",
+				url: CacheService.server.url + "/questions/" + userId + "/user/answered"
+		}
+		$http(config)
+		.then(function(response){
+			// success
+			deferred.resolve(response);
+		}, function(response){
+			// failure
+			deferred.reject(response);
+		});
+		return deferred.promise;
+	};
+	
 	return questionAPIs;
 }]);

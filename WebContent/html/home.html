@@ -64,9 +64,10 @@
 		
 		<div class="home-main-container-scroll">
 		<div data-ng-repeat="question in allQuestions | filter: common.search.category track by $index">
-			<div class="home-card mt-2" data-ng-click="getQuestionInfo(question.quesId, question.askedBy)">
-			<strong>{{question.ques}}</strong>
-			<div class="home-answer-card">
+			<div data-ng-class="{true:'home-selected-card mt-2', false:'home-card mt-2'}[question.quesId == selectedQuestion.quesId]" 
+				data-ng-click="getQuestionInfo(question.quesId, question.askedBy)">
+			<h6>{{question.ques}}</h6>
+			<div data-ng-class="{true:'home-selected-answer-card', false:'home-answer-card'}[question.quesId == selectedQuestion.quesId]">
 			<small>{{question.answer.ans}}</small>
 			</div>
 			</div>

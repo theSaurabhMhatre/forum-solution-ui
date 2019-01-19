@@ -6,7 +6,7 @@
 		<div class="col-lg-9 mt-2">
 		<div class="answer-main-container">
 		<div class="ans-question-card mt-2">
-		<strong>{{selectedQuestion.ques}}</strong>
+		<h6>{{selectedQuestion.ques}}</h6>
 		</div>
 		
 		<div class="row" style="margin-left:-10px;margin-right:-10px;">
@@ -27,7 +27,8 @@
 		
 		<div data-ng-if="!common.noAnswers">
 		<div data-ng-repeat="answer in allAnswers track by $index">
-			<div class="ans-answer-card mt-2" data-ng-click="getAnswerInfo($index, answer.answeredBy)">
+			<div data-ng-class="{true:'ans-selected-answer-card mt-2', false:'ans-answer-card mt-2'}[answer.ansId == selectedAnswer.ansId]" 
+				data-ng-click="getAnswerInfo($index, answer.answeredBy)">
 			<small>{{answer.ans}}</small>
 			</div>
 		</div>

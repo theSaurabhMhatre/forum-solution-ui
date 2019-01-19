@@ -51,6 +51,22 @@ hr {
 	border-color: #ababab;
 	border-radius: 0;
 	overflow: scroll;
+	max-height: 40%;
+	padding: 10px;
+}
+
+.profile-side-container-scroll{
+	border: 2px solid;
+	border-color: #ababab;
+	border-radius: 0;
+	overflow: scroll;
 	max-height: 80%;
+	padding: 10px;
+}
+
+.profile-question-card{
+	border: 2px solid;
+	border-color: #ababab;
+	border-radius: 0;
 	padding: 10px;
 }

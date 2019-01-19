@@ -39,9 +39,27 @@ hr {
 	padding: 10px;
 }
 
+.home-selected-card{
+	color: #ffffff;
+    background-color: #949494;
+	border: 5px solid;
+	border-color: #cacaca;
+	border-radius: 0;
+	padding: 10px;
+}
+
 .home-answer-card{
 	border: 2px solid;
 	border-color: #ababab;
+	border-radius: 0;
+	padding: 10px;
+}
+
+.home-selected-answer-card{
+	background-color: #ffffff;
+    color: #000000;
+	border: 2px solid;
+	border-color: #cacaca;
 	border-radius: 0;
 	padding: 10px;
 }

@@ -89,7 +89,7 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 		UserFactory.getUser(userId)
 		.then(function(response){
 			// success
-			data = response.data.responseObject;
+			var data = response.data.responseObject;
 			$scope.questionOwner = data;
 		}, function(response){
 			// failure
