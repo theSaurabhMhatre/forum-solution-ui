@@ -1,6 +1,7 @@
 var app = angular.module("forumApp");
 
 app.factory("UserFactory", ["$http", "$q", "CacheService", function($http, $q, CacheService){
+	
 	var userAPIs = {};
 	
 	userAPIs.getUser = function(userId){
@@ -74,4 +75,5 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function($http, $q, C
     }
 	
 	return userAPIs;
+	
 }]);

@@ -2,6 +2,38 @@
 
 <div data-ng-controller="answerController" data-ng-init="init()" class="answer-margins">
 
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<h5 class="modal-title">Edit question?</h5>
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body">
+			
+			<small>Question</small>
+			<div class="form-group mt-2">
+			<textarea class="form-control" style="border: 2px solid #ababab;" placeholder="Your question goes here..." data-ng-model="common.ques.ques"></textarea>
+			</div>
+			<small>Question category</small>
+			<div class="form-group">
+			<select class="form-control" data-ng-model="common.ques.category" data-ng-options="category for category in common.categories">
+			</select>
+			</div>
+			
+			</div>
+			<div class="modal-footer">
+			<button type="button" class="btn btn-success" data-ng-click="updateQuestion()">
+			Confirm
+			</button>
+			<button type="button" class="btn btn-danger" data-ng-click="cancelUpdateQuestion()">
+			Cancel
+			</button>
+			</div>
+		</div>
+		</div>
+	</div>
+
 	<div class="row" style="margin-top: 5%;">
 		<div class="col-lg-9 mt-2">
 		<div class="answer-main-container">
@@ -65,6 +97,12 @@
 			<small>Likes:</small>
 			<small data-ng-bind="selectedQuestion.likes"></small>
 			</div>
+			<div data-ng-if="selectedQuestion.askedBy==sessionData.currentUser.userId">
+			<button class="btn btn-basic btn-block mt-1"
+				data-ng-click="commenceUpdateQuestion()">
+				<small>Edit question</small>
+			</button>
+			</div>
 			</div>
 
 			<div class="answer-side-container mt-2" data-ng-if="!common.noAnswers">
@@ -89,6 +127,12 @@
 				data-ng-disabled="selectedAnswer.isLiked">
 				<small>Like this answer</small>
 			</button>
+			<div data-ng-if="selectedAnswer.answeredBy==sessionData.currentUser.userId">
+			<button class="btn btn-basic btn-block mt-1" 
+				data-ng-click="commenceUpdateAnswer()">
+				<small>Edit answer</small>
+			</button>
+			</div>
 			</div>
 
 		</div>

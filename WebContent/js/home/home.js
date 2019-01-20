@@ -10,7 +10,7 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 	$scope.questionOwner = {};
     $scope.sessionData = {}; 
 	$scope.common = {
-			categories: ["technology", "science", "history", "comics", "others"],
+			categories: CacheService.common.categories,
             search: {
             	category: ""
             }
@@ -159,7 +159,8 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 	};
 	
 	$scope.validateQuestion = function(){
-		if($scope.common.ques != undefined && $scope.common.ques.ques != undefined && $scope.common.ques.ques.length > 0){
+		if($scope.common.ques != undefined && $scope.common.ques.ques != undefined &&
+				$scope.common.ques.ques.length > 0){
 			$('#myModal').modal('show');
 		} else {
 			alert("Please enter a question!");

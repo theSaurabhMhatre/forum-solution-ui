@@ -1,6 +1,7 @@
 var app = angular.module("forumApp", ["ngRoute"]);
 
 app.config(function($routeProvider) {
+	
     $routeProvider
     .when("/home", {
         templateUrl : "/forum/html/home.html"
@@ -20,14 +21,17 @@ app.config(function($routeProvider) {
     .otherwise({
         templateUrl : "/forum/html/register.html"
     });
+    
 });
 
 app.service("CacheService", function(){
+	
 	this.common = {
 			loggedIn: false,
 			currentUser: null,
 			selectedQuestion: null,
-			questionOwner: null
+			questionOwner: null,
+			categories: ["technology", "science", "history", "comics", "others"]
 	};
 	
 	this.server = {

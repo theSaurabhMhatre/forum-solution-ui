@@ -1,6 +1,7 @@
 var app = angular.module("forumApp");
 
 app.factory("AnswerFactory", ["$http", "$q", "CacheService", function($http, $q, CacheService){
+	
 	var answerAPIs = {};
 	
 	answerAPIs.getAnswersByQuestion = function(quesId){
@@ -26,6 +27,24 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function($http, $q,
 				method: "POST",
 				data: ans,
 				url: CacheService.server.url + "/answers"
+		}
+		$http(config)
+		.then(function(response){
+			// success
+			deferred.resolve(response);
+		}, function(response){
+			// failure
+			deferred.reject(response);
+		});
+		return deferred.promise;
+	};
+	
+	answerAPIs.updateAnswer = function(ans, ansId){
+		var deferred = $q.defer();
+		var config = {
+				method: "PUT",
+				data: ans,
+				url: CacheService.server.url + "/answers/" + ansId
 		}
 		$http(config)
 		.then(function(response){
@@ -74,4 +93,5 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function($http, $q,
 	};
 	
 	return answerAPIs;
+	
 }]);
