@@ -63,6 +63,13 @@
 		</div>
 		
 		<div class="home-main-container-scroll">
+		<div data-ng-if="common.search.category!=''">
+		<strong>{{common.search.category | uppercase}}</strong>
+		</div>
+		<div data-ng-if="common.search.category==''">
+		<strong>ALL QUESTIONS</strong>
+		</div>
+		<hr>
 		<div data-ng-repeat="question in allQuestions | filter: common.search.category track by $index">
 			<div data-ng-class="{true:'home-selected-card mt-2', false:'home-card mt-2'}[question.quesId == selectedQuestion.quesId]" 
 				data-ng-click="getQuestionInfo(question.quesId, question.askedBy)">
@@ -71,7 +78,10 @@
 			<small>{{question.answer.ans}}</small>
 			</div>
 			</div>
-		</div>			
+		</div>	
+		<div class="home-card" data-ng-if="selectedQuestion==undefined">
+		No Questions belonging to this category!
+		</div>		
 		</div>
 		</div>
 		<div class="col-lg-3 mt-2">
@@ -81,7 +91,7 @@
 		<small>Ask a question</small>
 		</button>
 		</div>
-		<div class="home-side-container mt-2">
+		<div class="home-side-container mt-2" data-ng-if="selectedQuestion!=undefined">
 			<div>
 			<strong>QUESTION DETAILS</strong>
 			</div>

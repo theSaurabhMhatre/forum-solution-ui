@@ -13,7 +13,8 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 			categories: CacheService.common.categories,
             search: {
             	category: ""
-            }
+            },
+			quesMap: new Map()
 	};
 	
 	$scope.init = function(){
@@ -27,8 +28,9 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 				var data = response.data.responseObject;
 				if(data[0].length > 0){
 					$scope.common.noQuestions = false;
-					$scope.setLikesForQuestions(data);
-					$scope.setSelectedQuestion();	
+					$scope.setLikesForQuestions(data);	
+					$scope.populateQuesMap();
+					$scope.setSelectedQuestion();
 				} else {
 					$scope.common.noQuestions = true;
 				}
@@ -67,8 +69,12 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 	
 	$scope.setSelectedQuestion = function(){
 		var userId;
-		if($scope.selectedQuestion.quesId == undefined){
-			$scope.selectedQuestion = $scope.allQuestions[0];
+		if($scope.selectedQuestion == undefined || $scope.selectedQuestion.quesId == undefined){
+			if($scope.common.search.category == ''){
+				$scope.selectedQuestion = $scope.allQuestions[0];
+			} else {
+				$scope.selectedQuestion = $scope.common.quesMap.get($scope.common.search.category);
+			}
 			userId = $scope.selectedQuestion.askedBy;
 			$scope.getUser(userId);
 		} else {
@@ -77,9 +83,10 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 			len = $scope.allQuestions.length;
 			for(currentQues = 0; currentQues < len; currentQues++){
 				if(quesId == $scope.allQuestions[currentQues].quesId){
-					$scope.selectedQuestion = $scope.allQuestions[0];
+					$scope.selectedQuestion = $scope.allQuestions[currentQues];
 					userId = $scope.selectedQuestion.askedBy;
 					$scope.getUser(userId);
+					break;
 				}
 			}
 		}
@@ -129,7 +136,9 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 			.then(function(response){
 				// success
 				var data = response.data.responseObject;
-				$scope.setLikesForQuestions(data);
+				$scope.setLikesForQuestions(data);	
+				$scope.common.quesMap.clear();
+				$scope.populateQuesMap();
 				$scope.setSelectedQuestion();
 			}, function(response){
 				// failure
@@ -182,6 +191,8 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 					// success
 					var data = response.data.responseObject;
 					$scope.setLikesForQuestions(data);
+					$scope.common.quesMap.clear();
+					$scope.populateQuesMap();
 					$scope.setSelectedQuestion();
 				}, function(response){
 					// failure
@@ -206,6 +217,22 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 	
 	$scope.setFilter = function(category){
 		$scope.common.search.category = category;
+		if(category == ''){
+			$scope.selectedQuestion = $scope.allQuestions[0];
+		} else {
+			$scope.selectedQuestion = $scope.common.quesMap.get(category);
+		}
+	};
+	
+	$scope.populateQuesMap = function(){
+		var currentQuestion, totalQuestions;
+		totalQuestions = $scope.allQuestions.length;
+		for(currentQuestion = 0; currentQuestion < totalQuestions; currentQuestion++){
+			if($scope.common.quesMap.has($scope.allQuestions[currentQuestion].category) == false){
+				$scope.common.quesMap.set($scope.allQuestions[currentQuestion].category,
+						$scope.allQuestions[currentQuestion]);
+			}
+		}
 	};
 	
 }]);
