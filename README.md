@@ -17,7 +17,6 @@ This project uses APIs defined in - [forum-solution](https://github.com/theSaura
 
 ## To-do
 
-#### The following features are yet to be implemented:
-- Allow modification of questions and answers
+##### The following features are yet to be implemented:
 - Allow non-registered users to browse questions and answers
 - User profile page is incomplete
