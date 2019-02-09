@@ -11,6 +11,7 @@ app.controller("answerController", ["$scope", "CacheService", "UserFactory", "Qu
 	$scope.answerOwner = {};
     $scope.sessionData = {};
 	$scope.common = {
+			ans: {},
 			ques: {},
 			categories: CacheService.common.categories
 	};
@@ -58,7 +59,7 @@ app.controller("answerController", ["$scope", "CacheService", "UserFactory", "Qu
 			len = $scope.allAnswers.length;
 			for(currentAns = 0; currentAns < len; currentAns++){
 				if(ansId == $scope.allAnswers[currentAns].ansId){
-					$scope.selectedAnswer = $scope.allAnswers[0];
+					$scope.selectedAnswer = $scope.allAnswers[currentAns];
 					userId = $scope.selectedAnswer.answeredBy;
 					$scope.getUser(userId);
 				}
@@ -135,7 +136,8 @@ app.controller("answerController", ["$scope", "CacheService", "UserFactory", "Qu
 	};
 	
 	$scope.submitAnswer = function(){
-		if($scope.common.ans != undefined && $scope.common.ans.ans.length > 0){
+		if($scope.common.ans != undefined && $scope.common.ans.ans != undefined &&
+				$scope.common.ans.ans.length > 0){
 			if($scope.common.mode == "add"){
 				// add a new answer
 				var ans = $scope.common.ans;

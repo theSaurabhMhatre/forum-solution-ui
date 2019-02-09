@@ -56,6 +56,24 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function($http, $q, C
 		});
 		return deferred.promise;
 	};
+	
+	userAPIs.updateUser = function(user, attribute){
+		var deferred = $q.defer();
+		var config = {
+				method: "PUT",
+				data: user,
+				url: CacheService.server.url + "/users/" + user.userId + "/" + attribute
+		}
+		$http(config)
+		.then(function(response){
+			// success
+			deferred.resolve(response);
+		}, function(response){
+			// failure
+			deferred.reject(response);
+		});
+		return deferred.promise;
+	};
     
     userAPIs.getUserRankings = function(){
         var deferred = $q.defer();

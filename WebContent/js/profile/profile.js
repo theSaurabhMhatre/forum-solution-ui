@@ -3,17 +3,23 @@ var app = angular.module("forumApp");
 app.controller("profileController", ["$scope", "CacheService", "UserFactory", "QuestionFactory", "AnswerFactory",
                                   function($scope, CacheService, UserFactory, QuestionFactory, AnswerFactory) {
 	
-	$scope.currentUser = {};    
+	$scope.currentUser = {};
+	$scope.tempUser = {};
     $scope.userRankings = [];
     $scope.sessionData = {};     
     $scope.askedQuestions = [];
     $scope.answeredQuestions = [];
+    $scope.userCreds = {};
+    $scope.common = {
+    	pswdCheck: false	
+    };
 	
 	$scope.init = function(){
         $scope.sessionData = CacheService.getSession();
 		var loggedIn = $scope.sessionData.loggedIn;
 		if(loggedIn){
 			$scope.currentUser = $scope.sessionData.currentUser;
+			$scope.tempUser = angular.copy($scope.currentUser);
             UserFactory.getUserRankings()
             .then(function(response){
                 // success
@@ -47,7 +53,6 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
             }
         });
 	};
-	
 
 	$scope.setAskedQuestions = function(userId){
 		QuestionFactory.getAskedQuestions(userId)
@@ -89,6 +94,122 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 		}, function(response){
 			// failure
 		});
+	};
+	
+	$scope.commenceEdit = function(){
+		$scope.tempUser = angular.copy($scope.currentUser);
+		$('#editDetails').modal('show');
+	};
+	
+	$scope.validateEdit = function(attribute){
+		var check = true;
+		if(attribute == "name"){
+			if($scope.tempUser.userName == ""){
+				alert("Username cannot be empty!");
+				check = false;
+			} else if($scope.tempUser.userName == $scope.currentUser.userName){
+				alert("No change in username!");
+				check = false;
+			} 
+		} else if(attribute == "mail"){
+			if($scope.tempUser.userMail == ""){
+				alert("Mail cannot be empty!");
+				check = false;
+			} else if($scope.tempUser.userMail == $scope.currentUser.userMail){
+				alert("No change in mail!");
+				check = false;
+			} 
+		} else if(attribute == "bio"){
+			if($scope.tempUser.userBio == ""){
+				alert("Bio cannot be empty!");
+				check = false;
+			} else if($scope.tempUser.userBio == $scope.currentUser.userBio){
+				alert("No change in bio!");
+				check = false;
+			} 
+		} else if(attribute == "pswd"){
+			if($scope.tempUser.userPswd == "" || $scope.tempUser.userPswdConfirm == "" || 
+			           $scope.tempUser.userPswd != $scope.tempUser.userPswdConfirm){
+				alert("Passwords do not match/cannot be blank!");
+				check = false;
+			} else if($scope.userCreds.userPswd == btoa($scope.tempUser.userPswd)){
+				alert("No change in password!");
+				check = false;
+			} 
+		}
+		return check;
+	};
+	
+	$scope.performEdit = function(attribute){
+		var check = $scope.validateEdit(attribute);
+		if(check == true){
+			var updatedUser;
+			if(attribute == "pswd"){
+				$scope.tempUser.userPswd = btoa($scope.tempUser.userPswd);
+				$scope.tempUser.userPswdConfirm = undefined;
+			}
+			UserFactory.updateUser($scope.tempUser, attribute)
+			.then(function(response){
+				// success
+				updatedUser = response.data.responseObject;
+				$scope.currentUser = updatedUser;
+				$scope.tempUser = angular.copy(updatedUser);	
+				$scope.sessionData.currentUser = updatedUser;
+				CacheService.setSession($scope.sessionData);
+				if(attribute == "pswd"){
+					$scope.userCreds = {};
+					$('#editPswd').modal('hide');
+					alert("Password changed successfully!");
+					$scope.common.pswdCheck = false;
+				} else {
+					alert("Update successful!");
+				}
+			}, function(response){
+				// failure
+				if(attribute == "name" && 
+						response.data.responseMessage == "Integrity constraint violation"){
+					alert("Username already taken, please select a different username!");
+				} else {
+					alert("Sorry, something went wrong!");
+				}
+			});
+		}
+	};
+	
+	$scope.closeEdit = function(){
+		$scope.tempUser = angular.copy($scope.currentUser);
+		$('#editDetails').modal('hide');
+	};
+	
+	$scope.commenceChangePswd = function(){
+		$scope.tempUser = angular.copy($scope.currentUser);
+		$scope.tempUser.userPswd = "";
+		$('#editPswd').modal('show');
+	};	
+	
+	$scope.validatePswd = function(){
+		if($scope.userCreds.userPswd != undefined && $scope.userCreds.userPswd != ""){
+			$scope.userCreds.userName = $scope.tempUser.userName;
+	    	$scope.userCreds.userPswd = btoa($scope.userCreds.userPswd);
+	        UserFactory.validateUser($scope.userCreds)
+	        .then(function(response){
+	            // success
+	        	$scope.common.pswdCheck = true;
+	        }, function(response){
+	            // failure
+	        	$scope.userCreds.userPswd = "";
+	            alert("Current password does not match!");
+	        });
+		} else {
+			alert("Password cannot be blank!");
+		}
+	};
+	
+	$scope.closeEditPswd = function(){
+		$scope.tempUser = angular.copy($scope.currentUser);
+		$scope.userCreds = {};
+		$('#editPswd').modal('hide');
+		$scope.common.pswdCheck = false;
 	};
 	
 }]);
