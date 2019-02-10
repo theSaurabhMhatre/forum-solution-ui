@@ -19,4 +19,3 @@ This project uses APIs defined in - [forum-solution](https://github.com/theSaura
 
 ##### The following features are yet to be implemented:
 - Allow non-registered users to browse questions and answers
-- User profile page is incomplete
