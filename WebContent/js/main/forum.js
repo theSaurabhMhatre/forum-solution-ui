@@ -18,6 +18,9 @@ app.config(function($routeProvider) {
     .when("/logout", {
         templateUrl : "/forum/html/logout.html"
     })
+    .when("/search", {
+        templateUrl : "/forum/html/search.html"
+    })
     .otherwise({
         templateUrl : "/forum/html/register.html"
     });
@@ -27,6 +30,8 @@ app.config(function($routeProvider) {
 app.service("CacheService", function(){
 	
 	this.common = {
+			show: false,
+			search: null,
 			loggedIn: false,
 			currentUser: null,
 			selectedQuestion: null,
@@ -60,9 +65,52 @@ app.service("CacheService", function(){
 
 app.controller("forumController", ["$scope", "CacheService", function($scope, CacheService){
 	
+	$scope.sessionData = {};
+	$scope.common = {
+			show: false,
+			types: [],
+            categories: [],
+			search: {
+				keyword: null,
+                category: null,
+				type: null
+			}
+	};
+	
+	$scope.init = function(){
+		$scope.sessionData = CacheService.getSession();
+		$scope.common = {
+				show: $scope.sessionData.show,
+				types: ["Question","Answer","All"],
+	            categories: ["Technology", "Science", "History", "Comics", "Others", "All"],
+				search: {
+					keyword: "",
+	                category: "All",
+					type: "All"
+				}
+		};
+	};
+	
 	$scope.clearSession = function(){
+		$scope.common.show = false;
 		CacheService.clearSession();
 		location.replace("#!logout");
 	};
-	
+    
+    $scope.search = function(){
+    	var data = angular.copy($scope.common.search);
+    	if(data.keyword == ""){
+    		alert("Search string cannot be empty!");
+    	} else {
+            $scope.$broadcast("searchData", data);	
+    	}
+    };
+    
+    $scope.$on("showSearch", function(event, data){
+		$scope.sessionData = CacheService.getSession();
+		$scope.sessionData.show = data;
+		CacheService.setSession($scope.sessionData);
+    	$scope.common.show = data;
+    });
+    
 }]);

@@ -15,7 +15,7 @@ hr {
 }
 
 .home-margins{
-	margin-top: 5%;
+	margin-top: 2%;
 	margin-bottom: 5%;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -24,7 +24,7 @@ hr {
 
 @media screen and (max-width: 992px) {
 	.home-margins{
-		margin-top: 10%;
+		margin-top: 2%;
 		margin-bottom: 5%;
 		margin-left: 2%;
 		margin-right: 2%;

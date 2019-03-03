@@ -41,3 +41,23 @@
 	    padding-left: 15px;
 	}
 }
+
+.header-margin{
+	margin-top: 0rem !important;
+	width: 50%;
+}
+
+@media screen and (max-width: 992px) {
+	.header-margin{
+		margin-top: 0.5rem !important;
+		width: 100%;
+	}
+}
+
+.property-width{
+	width: 6em;
+}
+
+.property-width-sm{
+	width: 5em;
+}

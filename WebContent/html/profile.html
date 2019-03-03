@@ -12,29 +12,31 @@
 			<div class="modal-body">
 			
 			<div class="input-group">
-			  <input type="text" class="form-control" data-ng-model="tempUser.userName">
-			  <span class="input-group-btn">
-			    <button class="btn btn-info" type="button" data-ng-click="performEdit('name')">
-			    Change
-			    </button>
-			  </span>
-			</div>
+		    <input type="text" class="form-control" data-ng-model="tempUser.userName">
+		    <div class="input-group-append">
+	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('name')">
+	     	Change
+	     	</button>
+		    </div>
+			</div>				
+			
 			<div class="input-group mt-2">
-			  <input type="text" class="form-control" data-ng-model="tempUser.userMail">
-			  <span class="input-group-btn">
-			    <button class="btn btn-info" type="button" data-ng-click="performEdit('mail')">
-			    Change
-			    </button>
-			  </span>
-			</div>
+		    <input type="text" class="form-control" data-ng-model="tempUser.userMail">
+		    <div class="input-group-append">
+	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('mail')">
+	     	Change
+	     	</button>
+		    </div>
+			</div>	
+			
 			<div class="input-group mt-2">
-			  <input type="text" class="form-control" data-ng-model="tempUser.userBio">
-			  <span class="input-group-btn">
-			    <button class="btn btn-info" type="button" data-ng-click="performEdit('bio')">
-			    Change
-			    </button>
-			  </span>
-			</div>
+		    <input type="text" class="form-control" data-ng-model="tempUser.userBio">
+		    <div class="input-group-append">
+	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('bio')">
+	     	Change
+	     	</button>
+		    </div>
+			</div>				
 			
 			</div>
 			<div class="modal-footer">
@@ -56,19 +58,30 @@
 			<div class="modal-body">
 			
 			<div class="input-group">
-			  <input type="password" class="form-control" placeholder="Current password" data-ng-model="userCreds.userPswd">
-			  <span class="input-group-btn">
-			    <button class="btn btn-info" type="button" data-ng-click="validatePswd()">
-			    Validate
-			    </button>
-			  </span>
-			</div>
+		    <div class="input-group-prepend">
+		    <span class="input-group-text property-width"><small>Current Pswd</small></span>
+		    </div>
+		    <input type="password" class="form-control" data-ng-model="userCreds.userPswd">
+		    <div class="input-group-append">
+	     	<button class="btn btn-info" type="button" data-ng-click="validatePswd()">
+	     	Validate
+	     	</button>
+		    </div>
+			</div>		
 			
 			<div data-ng-if="common.pswdCheck">
-				<small>Password</small>
-				<input type="password" class="form-control" placeholder="@@##$$%%" data-ng-model="tempUser.userPswd">
-				<small>Confirm Password</small>
-				<input type="password" class="form-control" placeholder="@@##$$%%" data-ng-model="tempUser.userPswdConfirm">
+				<div class="input-group mt-2">
+			    <div class="input-group-prepend">
+			    <span class="input-group-text property-width"><small>New Pswd</small></span>
+			    </div>
+			    <input type="password" class="form-control" placeholder="@@##$$%%" data-ng-model="tempUser.userPswd">
+				</div>	
+				<div class="input-group mt-2">
+			    <div class="input-group-prepend">
+			    <span class="input-group-text property-width"><small>Confirm Pswd</small></span>
+			    </div>
+			    <input type="password" class="form-control" placeholder="@@##$$%%" data-ng-model="tempUser.userPswdConfirm">
+				</div>	
 			</div>
 			
 			</div>
@@ -84,7 +97,7 @@
 		</div>
 	</div>
 	
-	<div class="row" style="margin-top: 5%;">
+	<div class="row">
 		<div class="col-lg-2 mt-2">
 		<div class="profile-card">
 			<strong>BASIC DETAILS</strong>

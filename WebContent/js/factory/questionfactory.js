@@ -126,6 +126,24 @@ app.factory("QuestionFactory", ["$http", "$q", "CacheService", function($http, $
 		return deferred.promise;
 	};
 	
+	questionAPIs.performSearch = function(search){
+		var deferred = $q.defer();
+		var params = "type=" + search.type + "&category=" + search.category + "&keyword=" + search.keyword;
+		var config = {
+				method: "GET",
+				url: CacheService.server.url + "/questions/search?" + params
+		}
+		$http(config)
+		.then(function(response){
+			// success
+			deferred.resolve(response);
+		}, function(response){
+			// failure
+			deferred.reject(response);
+		});
+		return deferred.promise;
+	};	
+	
 	return questionAPIs;
 	
 }]);

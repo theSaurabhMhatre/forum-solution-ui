@@ -1,0 +1,78 @@
+<div data-ng-include="'/forum/html/header.html'"></div>
+
+<div data-ng-controller="searchController" data-ng-init="init()" class="search-margins">
+
+	<div class="row">
+	
+		<div class="col-lg-3 mt-2">
+		<div class="home-side-container">
+			<div>
+			<strong>SEARCH SUMMARY</strong>
+			</div>
+			<hr>
+			<div>
+			<small>Total Results:</small>
+			<small data-ng-bind="allQuestions.length"></small>
+			</div>
+			<div>
+			<small>Questions having search string:</small>
+			<small data-ng-bind="common.count.questions"></small>
+			</div>
+			<div>
+			<small>Answers having search string:</small>
+			<small data-ng-bind="common.count.answers"></small>
+			</div>
+		</div>
+		<div class="home-side-container mt-2" data-ng-if="!common.noResults">
+			<div>
+			<strong>QUESTION DETAILS</strong>
+			</div>
+			<hr>
+			<div>
+			<small>Question ID:</small>
+			<small data-ng-bind="selectedQuestion.quesId"></small>
+			</div>
+			<div>
+			<small>Asked By:</small>
+			<small data-ng-bind="questionOwner.userName"></small>
+			</div>
+			<div>
+			<small>Category:</small>
+			<small data-ng-bind="selectedQuestion.category"></small>
+			</div>
+			<div>
+			<small>Likes:</small>
+			<small data-ng-bind="selectedQuestion.likes"></small>
+			</div>
+			<button class="btn btn-basic btn-block mt-1"
+				data-ng-click="viewDetails()">
+				<small>View details</small>
+			</button>
+		</div>            
+		</div>        
+        
+		<div class="col-lg-9 mt-2">
+		<div class="search-main-container-no-scroll">
+		<strong>SEARCH RESULTS</strong>	
+		</div>
+		<div class="search-main-container-scroll" data-ng-if="!common.noResults">
+		<div data-ng-repeat="question in allQuestions track by $index">
+			<div data-ng-class="{true:'search-selected-card mt-2', false:'search-card mt-2'}[question.quesId == selectedQuestion.quesId]" 
+				data-ng-click="getQuestionInfo(question.quesId, question.askedBy)">
+			<h6>{{question.ques}}</h6>
+			<div data-ng-class="{true:'search-selected-answer-card', false:'search-answer-card'}[question.quesId == selectedQuestion.quesId]">
+			<small>{{question.answer.ans}}</small>
+			</div>
+			</div>
+		</div>		
+		</div>
+		<div class="search-main-container-no-scroll" data-ng-if="common.noResults">
+		<strong>No results matching your query!</strong>	
+		</div>
+		</div>
+	
+	</div>
+
+</div>
+
+<div data-ng-include="'/forum/html/footer.html'"></div>

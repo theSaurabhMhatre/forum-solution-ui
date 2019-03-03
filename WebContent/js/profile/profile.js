@@ -211,5 +211,11 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 		$('#editPswd').modal('hide');
 		$scope.common.pswdCheck = false;
 	};
-	
+    
+    $scope.$on("searchData", function(event, data){
+    	$scope.sessionData.search = data;
+    	CacheService.setSession($scope.sessionData);
+        location.replace("#!search");
+    });                                
+
 }]);

@@ -39,6 +39,23 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function($http, $q, C
 		return deferred.promise;
 	};
 
+	userAPIs.checkAvailability = function(userName){
+		var deferred = $q.defer();
+		var config = {
+				method: "GET",
+				url: CacheService.server.url + "/users/" + userName + "/available"
+		}
+		$http(config)
+		.then(function(response){
+			// success
+			deferred.resolve(response);
+		}, function(response){
+			// failure
+			deferred.reject(response);
+		});
+		return deferred.promise;
+	};    
+    
 	userAPIs.addUser = function(user){
 		var deferred = $q.defer();
 		var config = {

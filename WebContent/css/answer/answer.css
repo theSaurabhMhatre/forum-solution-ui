@@ -15,7 +15,7 @@ hr {
 }
 
 .answer-margins{
-	margin-top: 5%;
+	margin-top: 2%;
 	margin-bottom: 5%;
 	margin-left: 10%;
 	margin-right: 10%;
@@ -24,7 +24,7 @@ hr {
 
 @media screen and (max-width: 992px) {
 	.answer-margins{
-		margin-top: 10%;
+		margin-top: 2%;
 		margin-bottom: 5%;
 		margin-left: 2%;
 		margin-right: 2%;
@@ -62,7 +62,7 @@ hr {
 	padding: 5px;
 }
 
-.answer-main-container{
+.answer-main-container-scroll{
 	border: 2px solid;
 	border-color: #ababab;
 	border-radius: 0;
@@ -71,38 +71,11 @@ hr {
 	padding: 10px;
 }
 
-.col-lg-2{
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 10px;
-    padding-left: 5px;
-}
-
-@media screen and (max-width: 992px) {
-	.col-lg-2{
-	    position: relative;
-	    width: 100%;
-	    min-height: 1px;
-	    padding-right: 10px;
-	    padding-left: 10px;
-	}
-}
-
-.col-lg-10{
-    position: relative;
-    width: 100%;
-    min-height: 1px;
-    padding-right: 5px;
-    padding-left: 10px;
-}
-
-@media screen and (max-width: 992px) {
-	.col-lg-10{
-	    position: relative;
-	    width: 100%;
-	    min-height: 1px;
-	    padding-right: 10px;
-	    padding-left: 10px;
-	}
+.answer-main-container-no-scroll{
+	border: 2px solid;
+	border-color: #ababab;
+	border-radius: 0;
+	overflow: auto;
+	padding: 10px;
+	margin-bottom: 10px;
 }

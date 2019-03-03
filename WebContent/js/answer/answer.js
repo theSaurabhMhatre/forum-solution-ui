@@ -245,5 +245,11 @@ app.controller("answerController", ["$scope", "CacheService", "UserFactory", "Qu
 		$scope.common.ques.category = $scope.selectedQuestion.category;
 		$('#myModal').modal('hide');
 	};
-	
+    
+    $scope.$on("searchData", function(event, data){
+    	$scope.sessionData.search = data;
+    	CacheService.setSession($scope.sessionData);
+        location.replace("#!search");
+    });                                
+
 }]);

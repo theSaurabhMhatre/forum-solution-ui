@@ -233,6 +233,12 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 						$scope.allQuestions[currentQuestion]);
 			}
 		}
-	};
+	};                                      
+        
+    $scope.$on("searchData", function(event, data){
+    	$scope.sessionData.search = data;
+    	CacheService.setSession($scope.sessionData);
+        location.replace("#!search");
+    });                                
 	
 }]);

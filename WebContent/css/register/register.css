@@ -20,8 +20,22 @@ hr {
 	border-radius: 5px;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	margin-left: 10%;
 	margin-right: 10%;
+}
+
+@media screen and (max-width: 992px) {
+	.background{
+		margin-top: 10%;
+		background-color: #dedede;
+		border-radius: 5px;
+		padding-top: 20px;
+		padding-bottom: 20px;
+		margin-left: 10%;
+		margin-right: 10%;
+	}
 }
 
 .register{

@@ -14,6 +14,7 @@
 	<script src="/forum/js/register/register.js"></script>
 	<script src="/forum/js/answer/answer.js"></script>
 	<script src="/forum/js/profile/profile.js"></script>
+	<script src="/forum/js/search/search.js"></script>
 	<script src="/forum/js/logout/logout.js"></script>
 	
 	<link rel="stylesheet" href="/forum/css/bootstrap/bootstrap.css">
@@ -22,11 +23,12 @@
 	<link rel="stylesheet" href="/forum/css/register/register.css">
 	<link rel="stylesheet" href="/forum/css/answer/answer.css">
 	<link rel="stylesheet" href="/forum/css/profile/profile.css">
+	<link rel="stylesheet" href="/forum/css/search/search.css">
 		
 	</head>
 	<body data-ng-app="forumApp" data-ng-cloak>	
 	
-	<div data-ng-controller="forumController">	
+	<div data-ng-controller="forumController" data-ng-init="init()">	
 	<div data-ng-view>
 		
 	</div>

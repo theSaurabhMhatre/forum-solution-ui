@@ -36,20 +36,16 @@
 	</div>	
 	
 	<div data-ng-if="!common.noQuestions">
-	<div class="row" style="margin-top: 5%;">
+	<div class="row">
 	
 		<div class="col-lg-9 mt-2">
 		
 		<div data-ng-if="common.askQuestion">
 		<div class="home-main-container-no-scroll">
-		<div class="row" style="margin-left:-10px;margin-right:-10px;">
-			<div class="col-lg-10">
 			<div class="form-group mt-2">
 			<textarea class="form-control" style="border: 2px solid #ababab;" placeholder="Your question goes here..." data-ng-model="common.ques.ques"></textarea>
 			</div>
-			</div>
-			<div class="col-lg-2">
-			<div class="btn-group-vertical btn-block mt-2">
+			<div class="btn-group-vertical btn-block">
 			  <button type="button" class="btn btn-info btn-sm" data-ng-click="validateQuestion()">
 			  Submit
 			  </button>
@@ -57,19 +53,19 @@
 			  Reset
 			  </button>
 			</div>
-			</div>
-		</div>
 		</div>
 		</div>
 		
-		<div class="home-main-container-scroll">
+		<div class="home-main-container-no-scroll">
 		<div data-ng-if="common.search.category!=''">
 		<strong>{{common.search.category | uppercase}}</strong>
 		</div>
 		<div data-ng-if="common.search.category==''">
 		<strong>ALL QUESTIONS</strong>
+		</div>		
 		</div>
-		<hr>
+		
+		<div class="home-main-container-scroll">
 		<div data-ng-repeat="question in allQuestions | filter: common.search.category track by $index">
 			<div data-ng-class="{true:'home-selected-card mt-2', false:'home-card mt-2'}[question.quesId == selectedQuestion.quesId]" 
 				data-ng-click="getQuestionInfo(question.quesId, question.askedBy)">
@@ -170,11 +166,26 @@
 	</div>
 	
 	<div data-ng-if="common.noQuestions">
-	<div class="row" style="margin-top: 10%;">
+	<div class="row">
 	<div class="col-sm-12" style="text-align: center;">
 	<div class="home-card">
-	<small>No questions!</small>
-	</div>		
+	<p><strong>No questions have been asked yet!</strong></p>
+	<p><strong>Be the first one to post a question :D</strong></p>
+	<p><strong>Remember to refresh after asking the question :)</strong></p>
+	</div>
+
+	<div class="form-group mt-2">
+	<textarea class="form-control" style="border: 2px solid #ababab;" placeholder="Your question goes here..." data-ng-model="common.ques.ques"></textarea>
+	</div>
+	<div class="btn-group-vertical btn-block">
+	  <button type="button" class="btn btn-info btn-sm" data-ng-click="validateQuestion()">
+	  Submit
+	  </button>
+	  <button type="button" class="btn btn-info btn-sm" data-ng-click="resetQuestion()">
+	  Reset
+	  </button>
+	</div>
+		
 	</div>
 	</div>
 	</div>
