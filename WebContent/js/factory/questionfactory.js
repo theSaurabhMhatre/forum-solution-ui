@@ -75,6 +75,27 @@ app.factory("QuestionFactory", ["$http", "$q", "CacheService", function($http, $
 		return deferred.promise;
 	};
 	
+	questionAPIs.dislikeQuestion = function(quesLike){
+		var deferred = $q.defer();
+		var config = {
+				method: "DELETE",
+				data: quesLike,
+				headers: {
+					'content-type': 'application/json'
+ 				},
+				url: CacheService.server.url + "/questions/" + quesLike.quesId + "/dislike"
+		}
+		$http(config)
+		.then(function(response){
+			// success
+			deferred.resolve(response);
+		}, function(response){
+			// failure
+			deferred.reject(response);
+		});
+		return deferred.promise;
+	};	
+	
 	questionAPIs.getLikedQuestions = function(userId){
 		var deferred = $q.defer();
 		var config = {

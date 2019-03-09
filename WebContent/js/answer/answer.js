@@ -135,6 +135,32 @@ app.controller("answerController", ["$scope", "CacheService", "UserFactory", "Qu
 		});
 	};
 	
+	$scope.dislikeAnswer = function(){
+		var ansLike = {};
+		ansLike.userId = $scope.sessionData.currentUser.userId;
+		ansLike.quesId = $scope.selectedQuestion.quesId;
+		ansLike.ansId = $scope.selectedAnswer.ansId;
+		AnswerFactory.dislikeAnswer(ansLike)
+		.then(function(response){
+			// success
+			var quesId;
+			quesId = $scope.selectedQuestion.quesId;
+			AnswerFactory.getAnswersByQuestion(quesId)
+			.then(function(response){
+				// success
+				var data = response.data.responseObject;
+				$scope.setLikesForAnswers(data);
+				$scope.setSelectedAnswer();
+				$scope.common.mode = "add";
+			}, function(response){
+				// failure
+			});
+		}, function(response){
+			// failure
+			alert("Sorry, something went wrong!");
+		});
+	};	
+	
 	$scope.submitAnswer = function(){
 		if($scope.common.ans != undefined && $scope.common.ans.ans != undefined &&
 				$scope.common.ans.ans.length > 0){

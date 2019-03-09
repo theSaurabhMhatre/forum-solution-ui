@@ -75,6 +75,27 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function($http, $q,
 		return deferred.promise;
 	};
 	
+	answerAPIs.dislikeAnswer = function(ansLike){
+		var deferred = $q.defer();
+		var config = {
+				method: "DELETE",
+				data: ansLike,
+				headers: {
+					'content-type': 'application/json'
+ 				},
+				url: CacheService.server.url + "/answers/" + ansLike.ansId + "/dislike"
+		}
+		$http(config)
+		.then(function(response){
+			// success
+			deferred.resolve(response);
+		}, function(response){
+			// failure
+			deferred.reject(response);
+		});
+		return deferred.promise;
+	};	
+	
 	answerAPIs.getLikedAnswers = function(userId){
 		var deferred = $q.defer();
 		var config = {

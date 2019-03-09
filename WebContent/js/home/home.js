@@ -149,6 +149,30 @@ app.controller("homeController", ["$scope", "CacheService", "UserFactory", "Ques
 		});
 	};
 	
+	$scope.dislikeQuestion = function(){
+		var quesLike = {};
+		quesLike.userId = $scope.sessionData.currentUser.userId;
+		quesLike.quesId = $scope.selectedQuestion.quesId;
+		QuestionFactory.dislikeQuestion(quesLike)
+		.then(function(response){
+			// success
+			QuestionFactory.getQuestions()
+			.then(function(response){
+				// success
+				var data = response.data.responseObject;
+				$scope.setLikesForQuestions(data);	
+				$scope.common.quesMap.clear();
+				$scope.populateQuesMap();
+				$scope.setSelectedQuestion();
+			}, function(response){
+				// failure
+			});
+		}, function(response){
+			// failure
+			alert("Sorry, something went wrong!");
+		});
+	};	
+	
 	$scope.answerQuestion = function(){
 		$scope.sessionData.selectedQuestion = $scope.selectedQuestion;
 		$scope.sessionData.questionOwner = $scope.questionOwner;

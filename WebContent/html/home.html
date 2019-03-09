@@ -108,11 +108,18 @@
 			<small>Likes:</small>
 			<small data-ng-bind="selectedQuestion.likes"></small>
 			</div>
-			<button class="btn btn-basic btn-block mt-1"
-				data-ng-click="likeQuestion()" 
-				data-ng-disabled="selectedQuestion.isLiked">
-				<small>Like this question</small>
-			</button>
+            <div class="btn-group btn-block mt-2" style="display:flex;">
+              <button type="button" class="btn btn-basic btn-sm"
+                  style="flex:1;" data-ng-click="likeQuestion()"
+				  data-ng-disabled="selectedQuestion.isLiked">
+              <span>Like</span>
+              </button>
+              <button type="button" class="btn btn-basic btn-sm"
+                  style="flex:1;" data-ng-click="dislikeQuestion()"
+				  data-ng-disabled="!selectedQuestion.isLiked">
+              <span>Dislike</span>
+              </button>
+            </div>
 			<button class="btn btn-basic btn-block mt-1"
 				data-ng-click="answerQuestion()">
 				<small>Answer this question</small>
