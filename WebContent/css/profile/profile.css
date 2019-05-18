@@ -50,8 +50,8 @@ hr {
 	border: 2px solid;
 	border-color: #ababab;
 	border-radius: 0;
-	overflow: scroll;
-	max-height: 40%;
+	overflow-y: scroll;
+	max-height: 20em;
 	padding: 10px;
 }
 
@@ -59,8 +59,8 @@ hr {
 	border: 2px solid;
 	border-color: #ababab;
 	border-radius: 0;
-	overflow: scroll;
-	max-height: 80%;
+	overflow-y: scroll;
+	max-height: 40em;
 	padding: 10px;
 }
 
@@ -69,4 +69,13 @@ hr {
 	border-color: #ababab;
 	border-radius: 0;
 	padding: 10px;
+}
+
+.profile-selected-question-card{
+	background-color: #949494;
+    color: #ffffff;
+	border: 2px solid;
+	border-color: #cacaca;
+	border-radius: 0;
+	padding: 10px;	
 }

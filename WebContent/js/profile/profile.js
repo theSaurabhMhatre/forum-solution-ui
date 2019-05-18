@@ -103,7 +103,7 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 	
 	$scope.validateEdit = function(attribute){
 		var check = true;
-		if(attribute == "name"){
+		if(attribute == "user_name"){
 			if($scope.tempUser.userName == ""){
 				alert("Username cannot be empty!");
 				check = false;
@@ -111,7 +111,7 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 				alert("No change in username!");
 				check = false;
 			} 
-		} else if(attribute == "mail"){
+		} else if(attribute == "user_mail"){
 			if($scope.tempUser.userMail == ""){
 				alert("Mail cannot be empty!");
 				check = false;
@@ -119,7 +119,7 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 				alert("No change in mail!");
 				check = false;
 			} 
-		} else if(attribute == "bio"){
+		} else if(attribute == "user_bio"){
 			if($scope.tempUser.userBio == ""){
 				alert("Bio cannot be empty!");
 				check = false;
@@ -127,7 +127,7 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 				alert("No change in bio!");
 				check = false;
 			} 
-		} else if(attribute == "pswd"){
+		} else if(attribute == "user_pswd"){
 			if($scope.tempUser.userPswd == "" || $scope.tempUser.userPswdConfirm == "" || 
 			           $scope.tempUser.userPswd != $scope.tempUser.userPswdConfirm){
 				alert("Passwords do not match/cannot be blank!");
@@ -144,7 +144,7 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 		var check = $scope.validateEdit(attribute);
 		if(check == true){
 			var updatedUser;
-			if(attribute == "pswd"){
+			if(attribute == "user_pswd"){
 				$scope.tempUser.userPswd = btoa($scope.tempUser.userPswd);
 				$scope.tempUser.userPswdConfirm = undefined;
 			}
@@ -156,7 +156,7 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 				$scope.tempUser = angular.copy(updatedUser);	
 				$scope.sessionData.currentUser = updatedUser;
 				CacheService.setSession($scope.sessionData);
-				if(attribute == "pswd"){
+				if(attribute == "user_pswd"){
 					$scope.userCreds = {};
 					$('#editPswd').modal('hide');
 					alert("Password changed successfully!");
@@ -166,7 +166,7 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
 				}
 			}, function(response){
 				// failure
-				if(attribute == "name" && 
+				if(attribute == "user_name" && 
 						response.data.responseMessage == "Integrity constraint violation"){
 					alert("Username already taken, please select a different username!");
 				} else {
@@ -218,4 +218,28 @@ app.controller("profileController", ["$scope", "CacheService", "UserFactory", "Q
         location.replace("#!search");
     });                                
 
+    $scope.addClassQues = function(quesNum){
+    	var quesId = "#quesNum" + quesNum;
+    	$(quesId).removeClass("profile-question-card");
+    	$(quesId).addClass("profile-selected-question-card");
+    };
+
+    $scope.removeClassQues = function(quesNum){
+    	var quesId = "#quesNum" + quesNum;
+    	$(quesId).removeClass("profile-selected-question-card");
+    	$(quesId).addClass("profile-question-card");
+    };
+
+    $scope.addClassAns = function(quesNum){
+    	var quesId = "#ansNum" + quesNum;
+    	$(quesId).removeClass("profile-question-card");
+    	$(quesId).addClass("profile-selected-question-card");
+    };
+
+    $scope.removeClassAns = function(quesNum){
+    	var quesId = "#ansNum" + quesNum;
+    	$(quesId).removeClass("profile-selected-question-card");
+    	$(quesId).addClass("profile-question-card");
+    };
+    
 }]);

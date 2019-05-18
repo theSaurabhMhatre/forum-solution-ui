@@ -1,11 +1,12 @@
 var app = angular.module("forumApp");
 
-app.controller("searchController", ["$scope", "CacheService", "UserFactory", "QuestionFactory", "AnswerFactory",
-                                  function($scope, CacheService, UserFactory, QuestionFactory, AnswerFactory) {
+app.controller("searchController", ["$scope", "CacheService", "UserFactory", "QuestionFactory", "AnswerFactory", "SearchFactory",
+                                  function($scope, CacheService, UserFactory, QuestionFactory, AnswerFactory, SearchFactory) {
 	
 	$scope.allQuestions = [];
 	$scope.topAnswers = [];
 	$scope.selectedQuestion = {};
+	$scope.selectedAnswer = {};
 	$scope.questionOwner = {};
     $scope.sessionData = {}; 
 	$scope.common = {
@@ -30,15 +31,16 @@ app.controller("searchController", ["$scope", "CacheService", "UserFactory", "Qu
 	$scope.fetchResults = function(search){
         search.type = search.type.toLowerCase();
         search.category = search.category.toLowerCase(); 
-        QuestionFactory.performSearch(search)
+        SearchFactory.performSearch(search)
         .then(function(response){
         	// success
         	var data = response.data.responseObject;
-        	if(data[0].length > 0){
+        	if(data.questions.length > 0){
             	$scope.common.noResults = false; 
-        		$scope.common.count = data[2];
+        		$scope.common.count = data.counter;
         		$scope.setQuestionsAndAnswers(data);
         		$scope.setSelectedQuestion();
+        		$scope.setAnswer(0);
         	} else {
             	$scope.allQuestions = [];
             	$scope.topAnswers = [];
@@ -76,8 +78,8 @@ app.controller("searchController", ["$scope", "CacheService", "UserFactory", "Qu
 	};
 	
 	$scope.setQuestionsAndAnswers = function(data){
-		$scope.allQuestions = data[0];
-        $scope.topAnswers = data[1];
+		$scope.allQuestions = data.questions;
+        $scope.topAnswers = data.answers;
         var currentQuestion, totalQuestions;
         totalQuestions = $scope.allQuestions.length;
         for(currentQuestion = 0; currentQuestion < totalQuestions; currentQuestion++){
@@ -85,7 +87,7 @@ app.controller("searchController", ["$scope", "CacheService", "UserFactory", "Qu
         }
 	};
 	
-	$scope.getQuestionInfo = function(quesId, userId){
+	$scope.getQuestionInfo = function(quesId, userId, index){
 		$scope.selectedQuestion = {};
         var currentQuestion, totalQuestions;
         totalQuestions = $scope.allQuestions.length;
@@ -94,8 +96,16 @@ app.controller("searchController", ["$scope", "CacheService", "UserFactory", "Qu
                 $scope.selectedQuestion = $scope.allQuestions[currentQuestion];
             }
         }
+        $scope.setAnswer(index);
 		$scope.getUser(userId);
 	};
+	
+	$scope.setAnswer = function(index){
+		$scope.selectedAnswer = $scope.topAnswers[index];
+		if($scope.selectedAnswer.ansId == 0){
+			$scope.selectedAnswer.ansId = (-1) * $scope.allQuestions[index].quesId; 
+		}
+	}
 	
 	$scope.viewDetails = function(){
 		$scope.sessionData.selectedQuestion = $scope.selectedQuestion;

@@ -14,7 +14,7 @@
 			<div class="input-group">
 		    <input type="text" class="form-control" data-ng-model="tempUser.userName">
 		    <div class="input-group-append">
-	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('name')">
+	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('user_name')">
 	     	Change
 	     	</button>
 		    </div>
@@ -23,7 +23,7 @@
 			<div class="input-group mt-2">
 		    <input type="text" class="form-control" data-ng-model="tempUser.userMail">
 		    <div class="input-group-append">
-	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('mail')">
+	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('user_mail')">
 	     	Change
 	     	</button>
 		    </div>
@@ -32,7 +32,7 @@
 			<div class="input-group mt-2">
 		    <input type="text" class="form-control" data-ng-model="tempUser.userBio">
 		    <div class="input-group-append">
-	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('bio')">
+	     	<button class="btn btn-info" type="button" data-ng-click="performEdit('user_bio')">
 	     	Change
 	     	</button>
 		    </div>
@@ -57,7 +57,7 @@
 			</div>
 			<div class="modal-body">
 			
-			<div class="input-group">
+			<div class="input-group" data-ng-if="!common.pswdCheck">
 		    <div class="input-group-prepend">
 		    <span class="input-group-text property-width"><small>Current Pswd</small></span>
 		    </div>
@@ -86,7 +86,7 @@
 			
 			</div>
 			<div class="modal-footer">
-			<button type="button" class="btn btn-success" data-ng-click="performEdit('pswd')" data-ng-if="common.pswdCheck">
+			<button type="button" class="btn btn-success" data-ng-click="performEdit('user_pswd')" data-ng-if="common.pswdCheck">
 			Change
 			</button>
 			<button type="button" class="btn btn-danger" data-ng-click="closeEditPswd()">
@@ -124,7 +124,9 @@
             <strong>QUESTIONS ASKED</strong>
 			<hr>
             <div data-ng-if="askedQuestions.length > 0" data-ng-repeat="question in askedQuestions">
-            <div class="profile-question-card mt-2" data-ng-click="viewAskedQuestion(question)">
+            <div class="profile-question-card mt-2" data-ng-click="viewAskedQuestion(question)" 
+            data-ng-mouseover="addClassQues(question.quesId)" data-ng-mouseout="removeClassQues(question.quesId)"
+            id="quesNum{{question.quesId}}">
             {{question.ques}}
             </div>
             </div>
@@ -136,7 +138,9 @@
             <strong>QUESTIONS ANSWERED</strong>
 			<hr>
             <div data-ng-if="answeredQuestions.length > 0" data-ng-repeat="question in answeredQuestions">
-            <div class="profile-question-card mt-2" data-ng-click="viewAnsweredQuestion(question)">
+            <div class="profile-question-card mt-2" data-ng-click="viewAnsweredQuestion(question)" 
+            data-ng-mouseover="addClassAns(question.quesId)" data-ng-mouseout="removeClassAns(question.quesId)"
+            id="ansNum{{question.quesId}}">
             {{question.ques}}
             </div>
             </div>

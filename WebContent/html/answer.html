@@ -44,10 +44,14 @@
 		<div class="form-group mt-2">
 		<textarea class="form-control" style="border: 2px solid #ababab;border-radius: 0px;" placeholder="Your answer goes here..." data-ng-model="common.ans.ans"></textarea>
 		</div>
-		<div class="btn-group-vertical btn-block">
-		  <button type="button" class="btn btn-info btn-sm" data-ng-click="submitAnswer()">Submit</button>
-		  <button type="button" class="btn btn-info btn-sm" data-ng-click="resetAnswer()">Reset</button>
-		</div>
+        <div class="btn-group btn-block mt-2" style="display:flex;">
+          <button type="button" class="btn btn-info btn-sm" style="flex:1;" data-ng-click="submitAnswer()">
+          <span>Submit</span>
+          </button>
+          <button type="button" class="btn btn-info btn-sm" style="flex:1;" data-ng-click="resetAnswer()">
+          <span>Reset</span>
+          </button>
+        </div>		
 		</div>
 		
 		<div class="answer-main-container-scroll">
