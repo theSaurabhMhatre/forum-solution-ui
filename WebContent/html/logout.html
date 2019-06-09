@@ -1,21 +1,19 @@
 <div data-ng-include="'/forum/html/header.html'"></div>
 	
-<div data-ng-controller="logoutController" data-ng-init="init()" style="min-height: 80%;">
-	<div class="bg-secondary" align="center" style="margin-top: 10%;margin-left: auto;margin-right: auto;
-		width: 50%;border-radius: 5px;padding: 2em;">
-		<div style="padding:0.5em;color:#ffffff;"> 
-		<div><h5>Thank you for using Ask me Anything!</h5></div>
-		
-		<div data-ng-if="!common.check">
-		<div>Please wait while we log you out :)</div>
-		<div>Thank you for you patience :)</div>
-		</div>
-		<div data-ng-if="common.check">
-		<div>You have been logged out :)</div>
-		<div>Thank you for you patience :)</div>
-		</div>
-		
-		</div>
+<div data-ng-controller="logoutController" data-ng-init="init()" style="min-height: 60%;">
+	<div class="bg-secondary" align="center" style="margin-top: 10em;margin-bottom: 5em;margin-left: auto;margin-right: auto;
+	width: 30em;border-radius: 5px;padding: 2em;">
+	<div style="padding:0.5em;color:#ffffff;"> 
+	<div><h5>Thank you for using Ask me Anything!</h5></div>
+	<div data-ng-if="!common.check">
+	<div>Please wait while we log you out :)</div>
+	<div>Thank you for you patience :)</div>
+	</div>
+	<div data-ng-if="common.check">
+	<div>You have been logged out :)</div>
+	<div>Thank you for you patience :)</div>
+	</div>
+	</div>
 	</div>
 </div>
 

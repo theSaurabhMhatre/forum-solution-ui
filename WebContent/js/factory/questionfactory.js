@@ -1,170 +1,169 @@
 var app = angular.module("forumApp");
 
-app.factory("QuestionFactory", ["$http", "$q", "CacheService", function($http, $q, CacheService){
-	
+app.factory("QuestionFactory", ["$http", "$q", "CacheService", function ($http, $q, CacheService) {
+
 	var questionAPIs = {};
-	
-	questionAPIs.getQuestions = function(){
+
+	questionAPIs.getQuestion = function (quesId) {
 		var deferred = $q.defer();
 		var config = {
-				method: "GET",
-				url: CacheService.server.url + "/questions"
+			method: "GET",
+			url: CacheService.server.url + "/questions/" + quesId
 		}
 		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
 		return deferred.promise;
 	};
 
-	questionAPIs.addQuestion = function(ques){
+	questionAPIs.getQuestions = function () {
 		var deferred = $q.defer();
 		var config = {
-				method: "POST",
-				data: ques,
-				url: CacheService.server.url + "/questions"
+			method: "GET",
+			url: CacheService.server.url + "/questions"
 		}
 		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
 		return deferred.promise;
 	};
 
-	questionAPIs.updateQuestion = function(ques, quesId){
+	questionAPIs.addQuestion = function (ques) {
 		var deferred = $q.defer();
 		var config = {
-				method: "PUT",
-				data: ques,
-				url: CacheService.server.url + "/questions/" + quesId
+			method: "POST",
+			data: ques,
+			url: CacheService.server.url + "/questions"
 		}
 		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
 		return deferred.promise;
 	};
-	
-	questionAPIs.likeQuestion = function(quesLike){
+
+	questionAPIs.updateQuestion = function (ques, quesId) {
 		var deferred = $q.defer();
 		var config = {
-				method: "POST",
-				data: quesLike,
-				url: CacheService.server.url + "/questions/" + quesLike.quesId + "/like"
+			method: "PUT",
+			data: ques,
+			url: CacheService.server.url + "/questions/" + quesId
 		}
 		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
 		return deferred.promise;
 	};
-	
-	questionAPIs.dislikeQuestion = function(quesLike){
+
+	questionAPIs.likeQuestion = function (quesLike) {
 		var deferred = $q.defer();
 		var config = {
-				method: "DELETE",
-				data: quesLike,
-				headers: {
-					'content-type': 'application/json'
- 				},
-				url: CacheService.server.url + "/questions/" + quesLike.quesId + "/dislike"
+			method: "POST",
+			data: quesLike,
+			url: CacheService.server.url + "/questions/" + quesLike.quesId + "/like"
 		}
 		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
-		return deferred.promise;
-	};	
-	
-	questionAPIs.getLikedQuestions = function(userId){
-		var deferred = $q.defer();
-		var config = {
-				method: "GET",
-				url: CacheService.server.url + "/questions/" + userId + "/likes"
-		}
-		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
 		return deferred.promise;
 	};
-	
-	questionAPIs.getAskedQuestions = function(userId){
+
+	questionAPIs.dislikeQuestion = function (quesLike) {
 		var deferred = $q.defer();
 		var config = {
-				method: "GET",
-				url: CacheService.server.url + "/questions/" + userId + "/user/asked"
+			method: "DELETE",
+			data: quesLike,
+			headers: {
+				'content-type': 'application/json'
+			},
+			url: CacheService.server.url + "/questions/" + quesLike.quesId + "/dislike"
 		}
 		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
 		return deferred.promise;
 	};
-	
-	questionAPIs.getAnsweredQuestions = function(userId){
+
+	questionAPIs.getLikedQuestions = function (userId) {
 		var deferred = $q.defer();
 		var config = {
-				method: "GET",
-				url: CacheService.server.url + "/questions/" + userId + "/user/answered"
+			method: "GET",
+			url: CacheService.server.url + "/questions/" + userId + "/likes"
 		}
 		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
 		return deferred.promise;
 	};
-	
-	questionAPIs.performSearch = function(search){
+
+	questionAPIs.getAskedQuestions = function (userId) {
 		var deferred = $q.defer();
-		var params = "type=" + search.type + "&category=" + search.category + "&keyword=" + search.keyword;
 		var config = {
-				method: "GET",
-				url: CacheService.server.url + "/questions/search?" + params
+			method: "GET",
+			url: CacheService.server.url + "/questions/" + userId + "/user/asked"
 		}
 		$http(config)
-		.then(function(response){
-			// success
-			deferred.resolve(response);
-		}, function(response){
-			// failure
-			deferred.reject(response);
-		});
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
 		return deferred.promise;
-	};	
-	
+	};
+
+	questionAPIs.getAnsweredQuestions = function (userId) {
+		var deferred = $q.defer();
+		var config = {
+			method: "GET",
+			url: CacheService.server.url + "/questions/" + userId + "/user/answered"
+		}
+		$http(config)
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
+		return deferred.promise;
+	};
+
 	return questionAPIs;
-	
+
 }]);

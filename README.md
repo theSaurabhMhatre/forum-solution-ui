@@ -14,8 +14,4 @@ This project uses APIs defined in - [forum-solution](https://github.com/theSaura
 - Questions and answers can be liked/disliked by users
 - Questions and answers are always ordered on the basis of likes
 - Users are ranked on the basis of total likes received for questions asked and answers answered
-
-## To-do
-
-##### The following features are yet to be implemented:
-- Allow non-registered users to browse questions and answers
+- Non-registered users can browse questions and answers without having to create an account
