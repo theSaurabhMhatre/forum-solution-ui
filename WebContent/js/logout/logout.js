@@ -7,6 +7,7 @@ app.controller("logoutController", ["$scope", "$timeout", "CacheService", functi
 	};
 
 	$scope.init = function () {
+		$scope.$emit("setLink", { value: "#logoutLink", set: true });
 		$scope.sessionData = CacheService.getSession();
 		var loggedIn = $scope.sessionData.loggedIn;
 		if (loggedIn) {

@@ -20,6 +20,7 @@ app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "
 		};
 
 		$scope.init = function () {
+			$scope.$emit("setLink", { value: "#profileLink", set: true });
 			$scope.common.routeUserName = $routeParams.userName;
 			$scope.sessionData = CacheService.getSession();
 			$scope.common.loggedIn = $scope.sessionData.loggedIn;
@@ -230,7 +231,7 @@ app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "
 				"/keyword/" + data.keyword.toLowerCase());
 		});
 
-		$scope.showProfile = function(index){
+		$scope.showProfile = function (index) {
 			var element = "#popover" + index;
 			$(element).popover("hide");
 			location.replace("#!profile/" + $scope.userRankings[index][0]);

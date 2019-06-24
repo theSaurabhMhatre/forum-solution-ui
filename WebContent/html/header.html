@@ -1,47 +1,49 @@
 <nav class="navbar navbar-expand-lg bg-secondary navbar-dark">
   <a class="navbar-brand" href="#!home/all">
-  <strong>A</strong><small>SK</small> <strong>M</strong><small>E</small> <strong>A</strong><small>NYTHING</small>
-  </a> 
+    <strong>A</strong><small>SK</small> <strong>M</strong><small>E</small> <strong>A</strong><small>NYTHING</small>
+  </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapseLinks">
-  <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="input-group input-group-sm header-margin" data-ng-if="common.show">
     <div class="input-group-prepend" style="margin-right: -2px;">
-    <select class="form-control form-control-sm" data-ng-model="common.search.type"
-    data-ng-options="type for type in common.types"
-    style="color: #ffffff; background-color: #ababab; border-color: #ababab;">
-    </select>
+      <select class="form-control form-control-sm" data-ng-model="common.search.type"
+        data-ng-options="type for type in common.types"
+        style="color: #ffffff; background-color: #ababab; border-color: #ababab;">
+      </select>
     </div>
     <div class="input-group-prepend input-group-append" style="margin-right: -2px; margin-left: -2px;">
-    <select class="form-control form-control-sm" data-ng-model="common.search.category"
-    data-ng-options="category for category in common.categories"
-    style="color: #ffffff; background-color: #ababab; border-color: #ababab;">
-    </select> 
+      <select class="form-control form-control-sm" data-ng-model="common.search.category"
+        data-ng-options="category for category in common.categories"
+        style="color: #ffffff; background-color: #ababab; border-color: #ababab;">
+      </select>
     </div>
     <input type="text" class="form-control" data-ng-model="common.search.keyword">
     <div class="input-group-append">
-    <button class="btn btn-info" type="button" data-ng-click="search()">
-    Search
-    </button>
+      <button class="btn btn-info" type="button" data-ng-click="search()">
+        Search
+      </button>
     </div>
   </div>
-  
+
   <div class="collapse navbar-collapse" id="collapseLinks">
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-    <a class="nav-link" href="#!home/all">Home</a>
-    </li>
-    <li class="nav-item" data-ng-if="common.loggedIn">
-    <a class="nav-link" data-ng-href="#!profile/{{sessionData.currentUser.userName}}">Profile</a>
-    </li>
-    <li class="nav-item" data-ng-if="common.loggedIn">
-    <a class="nav-link" href="#!logout" data-ng-click="clearSession()">Logout</a>
-    </li>
-    <li class="nav-item" data-ng-if="!common.loggedIn">
-    <a class="nav-link" href="#!register?signUp=true">Sign Up</a>
-    </li>
-  </ul>
-  </div>  
-  
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <strong><a id="homeLink" class="nav-link menu-link active" href="#!home/all">Home</a></strong>
+      </li>
+      <li class="nav-item" data-ng-if="common.loggedIn">
+        <strong><a id="profileLink" class="nav-link menu-link"
+            data-ng-href="#!profile/{{sessionData.currentUser.userName}}">Profile</a></strong>
+      </li>
+      <li class="nav-item" data-ng-if="common.loggedIn">
+        <strong><a id="logoutLink" class="nav-link menu-link" href="#!logout"
+            data-ng-click="clearSession()">Logout</a></strong>
+      </li>
+      <li class="nav-item" data-ng-if="!common.loggedIn">
+        <a id="loginLink" class="nav-link menu-link" href="#!register?signUp=true">Sign Up</a>
+      </li>
+    </ul>
+  </div>
+
 </nav>

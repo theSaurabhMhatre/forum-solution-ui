@@ -11,6 +11,7 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 		$scope.answerOwner = {};
 		$scope.sessionData = {};
 		$scope.common = {
+			pageExists: true,
 			loggedIn: false,
 			ans: {},
 			ques: {},
@@ -19,12 +20,32 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 		};
 
 		$scope.init = function () {
-			var userId;
+			$scope.$emit("setLink", { value: "#answerLink", set: false });
 			$scope.sessionData = CacheService.getSession();
 			$scope.common.loggedIn = $scope.sessionData.loggedIn;
-			var quesId;
+			var quesId, ansId;
 			quesId = $routeParams.questionId;
 			$scope.getQuestion(quesId);
+			ansId = $routeParams.answerId;
+			if (ansId != 0) {
+				AnswerFactory.getAnswerByQuesAnsPair(ansId, quesId)
+					.then(function (response) {
+						// success
+						if (response.data.responseObject.exists == true) {
+							$scope.continueInit(quesId);
+						} else {
+							$scope.common.pageExists = false;
+						}
+					}, function (response) {
+						// failure
+						$scope.common.pageExists = false;
+					});
+			} else {
+				$scope.continueInit(quesId);
+			}
+		};
+
+		$scope.continueInit = function (quesId) {
 			AnswerFactory.getAnswersByQuestion(quesId)
 				.then(function (response) {
 					// success
@@ -78,6 +99,7 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 					$scope.getUser(data.askedBy, "question");
 				}, function (response) {
 					// failure
+					$scope.common.pageExists = false;
 				});
 		};
 

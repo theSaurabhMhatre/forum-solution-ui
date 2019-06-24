@@ -18,6 +18,7 @@ app.controller("searchController", ["$scope", "$routeParams", "CacheService", "U
 		};
 
 		$scope.init = function () {
+			$scope.$emit("setLink", { value: "#searchLink", set: false });
 			$scope.sessionData = CacheService.getSession();
 			var loggedIn = $scope.sessionData.loggedIn;
 			if (loggedIn) {

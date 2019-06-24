@@ -47,11 +47,8 @@ app.service("CacheService", function () {
 
 	this.common = {
 		show: false,
-		//search: null,
 		loggedIn: false,
 		currentUser: null,
-		//selectedQuestion: null,
-		//questionOwner: null,
 		categories: ["technology", "science", "history", "comics", "others"]
 	};
 
@@ -131,6 +128,15 @@ app.controller("forumController", ["$scope", "CacheService", function ($scope, C
 		CacheService.setSession($scope.sessionData);
 		$scope.common.show = data;
 		$scope.common.loggedIn = data;
+	});
+
+	$scope.$on("setLink", function (event, data) {
+		angular.element(document).ready(function () {
+			$("a.nav-link.menu-link.active").removeClass("active");
+			if (data.set == true) {
+				$(data.value).addClass("active");
+			}
+		});
 	});
 
 }]);

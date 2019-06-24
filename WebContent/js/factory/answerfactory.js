@@ -113,6 +113,23 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function ($http, $q
 		return deferred.promise;
 	};
 
+	answerAPIs.getAnswerByQuesAnsPair = function (ansId, quesId) {
+		var deferred = $q.defer();
+		var config = {
+			method: "GET",
+			url: CacheService.server.url + "/answers/" + ansId + "/question/" + quesId
+		}
+		$http(config)
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
+		return deferred.promise;
+	};
+
 	return answerAPIs;
 
 }]);

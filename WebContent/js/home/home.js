@@ -19,6 +19,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 		};
 
 		$scope.init = function () {
+			$scope.$emit("setLink", { value: "#homeLink", set: true });
 			$scope.sessionData = CacheService.getSession();
 			$scope.common.loggedIn = $scope.sessionData.loggedIn;
 			if ($scope.common.categories.includes($routeParams.category)) {
