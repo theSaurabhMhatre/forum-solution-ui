@@ -1,7 +1,7 @@
 var app = angular.module("forumApp");
 
-app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "CacheService", "UserFactory", "QuestionFactory", "AnswerFactory",
-	function ($scope, $routeParams, $routeParams, CacheService, UserFactory, QuestionFactory, AnswerFactory) {
+app.controller("profileController", ["$scope", "$timeout", "$location", "$route", "$routeParams", "$routeParams", "CacheService", "UserFactory", "QuestionFactory", "AnswerFactory",
+	function ($scope, $timeout, $location, $route, $routeParams, $routeParams, CacheService, UserFactory, QuestionFactory, AnswerFactory) {
 
 		$scope.currentUser = {};
 		$scope.tempUser = {};
@@ -28,6 +28,9 @@ app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "
 				$scope.common.routeUserName == $scope.sessionData.currentUser.userName) {
 				$scope.common.editControls = true;
 				$scope.currentUser = $scope.sessionData.currentUser;
+				if (!$scope.currentUser.userAvatar.includes("decache")) {
+					$scope.currentUser.userAvatar += "?decache=" + (new Date().toString());
+				}
 				$scope.tempUser = angular.copy($scope.currentUser);
 				$scope.getUserRankings();
 			} else {
@@ -35,6 +38,9 @@ app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "
 					.then(function (response) {
 						// success
 						$scope.currentUser = response.data.responseObject.user;
+						if (!$scope.currentUser.userAvatar.includes("decache")) {
+							$scope.currentUser.userAvatar += "?decache=" + (new Date().toString());
+						}
 						$scope.tempUser = angular.copy($scope.currentUser);
 						$scope.getUserRankings();
 					}, function (response) {
@@ -100,18 +106,73 @@ app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "
 		};
 
 		$scope.viewAskedQuestion = function (question) {
-			location.replace("#!question/" + question.quesId +
-				"/answer/" + 0);
+			$location.path("/question/" + question.quesId +
+				"/answer/" + 0, true);
 		};
 
 		$scope.viewAnsweredQuestion = function (question, index) {
-			location.replace("#!question/" + question.quesId +
-				"/answer/" + $scope.answeredAnswers[index].ansId);
+			$location.path("/question/" + question.quesId +
+				"/answer/" + $scope.answeredAnswers[index].ansId, true);
 		};
 
 		$scope.commenceEdit = function () {
 			$scope.tempUser = angular.copy($scope.currentUser);
 			$('#editDetails').modal('show');
+		};
+
+		$scope.commenceUploadAvatar = function () {
+			$scope.tempUser = angular.copy($scope.currentUser);
+			$('#uploadAvatar').modal('show');
+		};
+
+		$(".custom-file-input").on("change", function () {
+			var fileName = $(this).val().split("\\").pop();
+			$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+		});
+
+		$scope.uploadAvatar = function () {
+			var mode;
+			if ($scope.currentUser.userAvatar == null) {
+				mode = "add";
+			} else {
+				mode = "update";
+			}
+			var userAvatar = document.getElementById("userAvatar").files[0];
+			if (userAvatar != null && userAvatar != undefined) {
+				var formData = new FormData();
+				formData.append("userAvatar", userAvatar);
+				UserFactory.modifyAvatar($scope.currentUser.userName, formData, mode)
+					.then(function (response) {
+						// success
+						updatedUser = response.data.responseObject;
+						$scope.currentUser = updatedUser;
+						if (!$scope.currentUser.userAvatar.includes("decache")) {
+							$scope.currentUser.userAvatar += "?decache=" + (new Date().toString());
+						}
+						$scope.tempUser = angular.copy(updatedUser);
+						$scope.sessionData.currentUser = updatedUser;
+						CacheService.setSession($scope.sessionData);
+						$('#uploadAvatar').modal('hide');
+						if (mode == "add") {
+							alert("Profile picture set successfully!");
+						} else {
+							alert("Profile picture updated successfully!");
+						}
+						$timeout(function () {
+							$route.reload();
+						}, 1000);
+					}, function (response) {
+						// failure
+						alert("Something went wrong, please try again later!");
+					});
+			} else {
+				alert("Please select a file!");
+			}
+		};
+
+		$scope.closeUploadAvatar = function () {
+			$scope.tempUser = angular.copy($scope.currentUser);
+			$('#uploadAvatar').modal('hide');
 		};
 
 		$scope.validateEdit = function (attribute) {
@@ -166,6 +227,9 @@ app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "
 						// success
 						updatedUser = response.data.responseObject;
 						$scope.currentUser = updatedUser;
+						if (!$scope.currentUser.userAvatar.includes("decache")) {
+							$scope.currentUser.userAvatar += "?decache=" + (new Date().toString());
+						}
 						$scope.tempUser = angular.copy(updatedUser);
 						$scope.sessionData.currentUser = updatedUser;
 						CacheService.setSession($scope.sessionData);
@@ -174,6 +238,13 @@ app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "
 							$('#editPswd').modal('hide');
 							alert("Password changed successfully!");
 							$scope.common.pswdCheck = false;
+						} else if (attribute == "user_name") {
+							CacheService.clearSession();
+							$scope.$emit("showSearch", false);
+							$('#editDetails').modal('hide');
+							$timeout(function () {
+								$location.path("/register", true).search({ value: "userNameChange" });
+							}, 1000);
 						} else {
 							alert("Update successful!");
 						}
@@ -226,15 +297,15 @@ app.controller("profileController", ["$scope", "$routeParams", "$routeParams", "
 		};
 
 		$scope.$on("searchData", function (event, data) {
-			location.replace("#!search/" + data.type.toLowerCase() +
+			$location.path("/search/" + data.type.toLowerCase() +
 				"/category/" + data.category.toLowerCase() +
-				"/keyword/" + data.keyword.toLowerCase());
+				"/keyword/" + data.keyword.toLowerCase(), true);
 		});
 
 		$scope.showProfile = function (index) {
 			var element = "#popover" + index;
 			$(element).popover("hide");
-			location.replace("#!profile/" + $scope.userRankings[index][0]);
+			$location.path("/profile/" + $scope.userRankings[index][0], true);
 		};
 
 		$scope.addClassQues = function (quesNum) {

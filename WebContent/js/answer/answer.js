@@ -11,8 +11,10 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 		$scope.answerOwner = {};
 		$scope.sessionData = {};
 		$scope.common = {
+			isAnswered: false,
 			pageExists: true,
 			loggedIn: false,
+			answerQuestion: false,
 			ans: {},
 			ques: {},
 			previousValue: 0,
@@ -57,10 +59,16 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 							$scope.setLikesForAnswers(data);
 						}
 						$scope.setSelectedAnswer();
+						$scope.checkIfAnswered();
 						$scope.common.mode = "add";
 					} else {
 						$scope.common.noAnswers = true;
 						$scope.common.mode = "add";
+					}
+					var queryParams = $location.search();
+					if (queryParams.answerQuestion != undefined && queryParams.answerQuestion != null &&
+						queryParams.answerQuestion == "true") {
+						$scope.common.answerQuestion = true;
 					}
 				}, function (response) {
 					// failure
@@ -88,6 +96,19 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 			}
 			userId = $scope.selectedAnswer.answeredBy;
 			$scope.getUser(userId, "answer");
+		};
+
+		$scope.checkIfAnswered = function () {
+			if ($scope.common.loggedIn) {
+				var currentAns, len;
+				len = $scope.allAnswers.length;
+				for (currentAns = 0; currentAns < len; currentAns++) {
+					if ($scope.allAnswers[currentAns].answeredBy == $scope.sessionData.currentUser.userId) {
+						$scope.common.isAnswered = true;
+						break;
+					}
+				}
+			}
 		};
 
 		$scope.getQuestion = function (quesId) {
@@ -211,8 +232,14 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 				});
 		};
 
+		$scope.cancelAskAnswer = function () {
+			$scope.common.answerQuestion = false;
+			$scope.resetAnswer();
+		};
+
 		$scope.submitAnswer = function () {
-			if ($scope.common.loggedIn) {
+			if ((!$scope.common.isAnswered && $scope.common.mode == "add") ||
+				($scope.common.isAnswered && $scope.common.mode == "update")) {
 				if ($scope.common.ans != undefined && $scope.common.ans.ans != undefined &&
 					$scope.common.ans.ans.length > 0) {
 					if ($scope.common.mode == "add") {
@@ -235,7 +262,18 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 					alert("Please enter an answer!");
 				}
 			} else {
-				alert("You need to login to answer questions :(");
+				var check = confirm("You've already answered this question! Do you want to edit your answer?");
+				if (check) {
+					var index, len;
+					len = $scope.allAnswers.length;
+					for (index = 0; index < len; index++) {
+						if ($scope.allAnswers[index].answeredBy == $scope.sessionData.currentUser.userId) {
+							$scope.selectedAnswer = $scope.allAnswers[index];
+							$scope.getUser($scope.selectedAnswer.answeredBy, "answer");
+						}
+					}
+					$scope.commenceUpdateAnswer();
+				}
 			}
 		};
 
@@ -256,6 +294,7 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 								$scope.setLikesForAnswers(data);
 							}
 							$scope.setSelectedAnswer();
+							$scope.common.isAnswered = true;
 						}, function (response) {
 							// failure
 						});
@@ -295,9 +334,22 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 			$scope.common.mode = "add";
 		};
 
+		$scope.commenceAnswerQuestion = function () {
+			if ($scope.common.loggedIn) {
+				$scope.common.answerQuestion = true;
+			} else {
+				var check = confirm("You need to login to answer questions. Do you wish to sign in?");
+				if (check) {
+					var redirectUrl = $location.url();
+					$location.path("/register", true).search({ redirect: redirectUrl, answerQuestion: "true" });
+				}
+			}
+		};
+
 		$scope.commenceUpdateAnswer = function () {
 			$scope.common.ans = $scope.selectedAnswer;
 			$scope.common.mode = "update";
+			$scope.common.answerQuestion = true;
 		};
 
 		$scope.commenceUpdateQuestion = function () {
@@ -337,9 +389,9 @@ app.controller("answerController", ["$scope", "$routeParams", "$location", "Cach
 		$scope.$on("searchData", function (event, data) {
 			$scope.sessionData.search = data;
 			CacheService.setSession($scope.sessionData);
-			location.replace("#!search/" + data.type.toLowerCase() +
+			$location.path("/search/" + data.type.toLowerCase() +
 				"/category/" + data.category.toLowerCase() +
-				"/keyword/" + data.keyword.toLowerCase());
+				"/keyword/" + data.keyword.toLowerCase(), true);
 		});
 
 	}]);

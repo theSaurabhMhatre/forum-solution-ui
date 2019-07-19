@@ -26,11 +26,15 @@ app.controller("registerController", ["$scope", "$location", "CacheService", "Us
             $scope.sessionData = CacheService.getSession();
             var loggedIn = $scope.sessionData.loggedIn;
             if (loggedIn) {
-                location.replace("#!home/all");
+                $location.path("/home/all", true);
             } else {
                 var queryParams = $location.search();
-                if (queryParams.signUp == "true") {
-                    $("#myModal").modal("show");
+                if (queryParams.value != undefined && queryParams.value != null) {
+                    if (queryParams.value == "signUp") {
+                        $("#myModal").modal("show");
+                    } else if (queryParams.value == "userNameChange") {
+                        alert("As you changed you username, please sign in again!");
+                    }
                 }
             }
         };
@@ -46,7 +50,20 @@ app.controller("registerController", ["$scope", "$location", "CacheService", "Us
                         $scope.sessionData.loggedIn = true;
                         CacheService.setSession($scope.sessionData);
                         $scope.$emit("showSearch", true);
-                        location.replace("#!home/all");
+                        var queryParams = $location.search();
+                        if (queryParams.redirect != undefined && queryParams.redirect != null &&
+                            queryParams.redirect != "") {
+                            var url = queryParams.redirect;
+                            if (queryParams.answerQuestion != undefined && queryParams.answerQuestion != null &&
+                                queryParams.answerQuestion == "true") {
+                                $location.path(url, true).search({ answerQuestion: "true" });
+                            } else if (queryParams.showQuestion != undefined && queryParams.showQuestion != null &&
+                                queryParams.showQuestion == "true") {
+                                $location.path(url, true).search({ showQuestion: "true" });
+                            }
+                        } else {
+                            $location.path("/home/all", true);
+                        }
                     }, function (response) {
                         // failure
                         $scope.resetCreds();
@@ -139,7 +156,7 @@ app.controller("registerController", ["$scope", "$location", "CacheService", "Us
         };
 
         $scope.skip = function () {
-            location.replace("#!home/all");
+            $location.path("/home/all", true);
         };
 
     }]);

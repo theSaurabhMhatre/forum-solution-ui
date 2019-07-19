@@ -7,7 +7,6 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title">Edit question?</h5>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 				<div class="modal-body">
 					<small>Question</small>
@@ -41,23 +40,38 @@
 	<div class="row" data-ng-if="common.pageExists">
 		<div class="col-lg-9 mt-2">
 			<div class="answer-main-container-no-scroll">
+				<div>
+					<strong>QUESTION</strong>
+				</div>
+				<hr>
 				<div class="ans-question-card mt-2">
 					<h6>{{selectedQuestion.ques}}</h6>
 				</div>
-				<div class="form-group mt-2">
-					<textarea class="form-control" style="border: 2px solid #ababab;border-radius: 0px;"
-						placeholder="Your answer goes here..." data-ng-model="common.ans.ans"></textarea>
-				</div>
-				<div class="btn-group btn-block mt-2" style="display:flex;">
-					<button type="button" class="btn btn-info btn-sm" style="flex:1;" data-ng-click="submitAnswer()">
-						<span>Submit</span>
-					</button>
-					<button type="button" class="btn btn-info btn-sm" style="flex:1;" data-ng-click="resetAnswer()">
-						<span>Reset</span>
-					</button>
+				<div data-ng-if="common.answerQuestion">
+					<div class="form-group mt-2">
+						<textarea class="form-control" style="border: 2px solid #ababab;border-radius: 0px;"
+							placeholder="Your answer goes here..." data-ng-model="common.ans.ans"></textarea>
+					</div>
+					<div class="btn-group btn-block mt-2" style="display:flex;">
+						<button type="button" class="btn btn-info btn-sm" style="flex:1;"
+							data-ng-click="submitAnswer()">
+							<span>Submit</span>
+						</button>
+						<button type="button" class="btn btn-info btn-sm" style="flex:1;" data-ng-click="resetAnswer()">
+							<span>Reset</span>
+						</button>
+						<button type="button" class="btn btn-info btn-sm" style="flex:1;"
+							data-ng-click="cancelAskAnswer()">
+							<span>Not now</span>
+						</button>
+					</div>
 				</div>
 			</div>
 			<div class="answer-main-container-scroll">
+				<div>
+					<strong>ANSWERS</strong>
+				</div>
+				<hr>
 				<div data-ng-if="!common.noAnswers">
 					<div data-ng-repeat="answer in allAnswers track by $index">
 						<div data-ng-class="{true:'ans-selected-answer-card mt-2', false:'ans-answer-card mt-2'}[answer.ansId == selectedAnswer.ansId]"
@@ -99,8 +113,11 @@
 					<small>Likes:</small>
 					<small data-ng-bind="selectedQuestion.likes"></small>
 				</div>
+				<button class="btn btn-basic btn-block mt-2" data-ng-click="commenceAnswerQuestion()">
+					<small>Answer question</small>
+				</button>
 				<div data-ng-if="selectedQuestion.askedBy==sessionData.currentUser.userId && common.loggedIn">
-					<button class="btn btn-basic btn-block mt-1" data-ng-click="commenceUpdateQuestion()">
+					<button class="btn btn-basic btn-block mt-2" data-ng-click="commenceUpdateQuestion()">
 						<small>Edit question</small>
 					</button>
 				</div>
@@ -135,7 +152,7 @@
 					</button>
 				</div>
 				<div data-ng-if="selectedAnswer.answeredBy==sessionData.currentUser.userId && common.loggedIn">
-					<button class="btn btn-basic btn-block mt-1" data-ng-click="commenceUpdateAnswer()">
+					<button class="btn btn-basic btn-block mt-2" data-ng-click="commenceUpdateAnswer()">
 						<small>Edit answer</small>
 					</button>
 				</div>

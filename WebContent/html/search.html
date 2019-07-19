@@ -61,10 +61,30 @@
                 <div data-ng-repeat="question in allQuestions track by $index">
                     <div data-ng-class="{true:'search-selected-card mt-2', false:'search-card mt-2'}[topAnswers[$index].ansId == selectedAnswer.ansId]"
                         data-ng-click="getQuestionInfo(question.quesId, question.askedBy, $index)">
-                        <h6>{{question.ques}}</h6>
+                        <h6>
+                            {{question.ques}}
+                        </h6>
                         <div
                             data-ng-class="{true:'search-selected-answer-card', false:'search-answer-card'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
                             <small>{{question.answer.ans}}</small>
+                            <small data-ng-if="question.answer.lengthExceeded">
+                                <a data-ng-href="#!question/{{question.quesId}}/answer/{{question.answer.ansId}}">(view
+                                    more...)</a>
+                            </small>
+                        </div>
+                        <div class="mt-1" style="text-align: right;">
+                            <span data-ng-if="question.badge=='question' || question.badge=='both'">
+                                <span
+                                    data-ng-class="{true: 'badge badge-light', false: 'badge badge-info'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
+                                    Question
+                                </span>
+                            </span>
+                            <span data-ng-if="question.badge=='answer' || question.badge=='both'">
+                                <span
+                                    data-ng-class="{true: 'badge badge-light', false: 'badge badge-info'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
+                                    Answer
+                                </span>
+                            </span>
                         </div>
                     </div>
                 </div>

@@ -49,7 +49,7 @@ app.service("CacheService", function () {
 		show: false,
 		loggedIn: false,
 		currentUser: null,
-		categories: ["technology", "science", "history", "comics", "others"]
+		categories: ["technology", "science", "history", "geography", "comics", "others"]
 	};
 
 	this.server = {
@@ -72,11 +72,21 @@ app.service("CacheService", function () {
 
 	this.clearSession = function () {
 		sessionStorage.clear();
+		this.resetCommon();
+	};
+
+	this.resetCommon = function () {
+		this.common = {
+			show: false,
+			loggedIn: false,
+			currentUser: null,
+			categories: ["technology", "science", "history", "geography", "comics", "others"]
+		};
 	};
 
 });
 
-app.controller("forumController", ["$scope", "CacheService", function ($scope, CacheService) {
+app.controller("forumController", ["$scope", "$location", "$timeout", "CacheService", function ($scope, $location, $timeout, CacheService) {
 
 	$scope.sessionData = {};
 	$scope.common = {
@@ -92,11 +102,15 @@ app.controller("forumController", ["$scope", "CacheService", function ($scope, C
 
 	$scope.init = function () {
 		$scope.sessionData = CacheService.getSession();
+		$scope.resetCommon();
+	};
+
+	$scope.resetCommon = function () {
 		$scope.common = {
 			loggedIn: $scope.sessionData.loggedIn,
 			show: $scope.sessionData.show,
 			types: ["Question", "Answer", "All"],
-			categories: ["Technology", "Science", "History", "Comics", "Others", "All"],
+			categories: ["Technology", "Science", "History", "Geography", "Comics", "Others", "All"],
 			search: {
 				keyword: "",
 				category: "All",
@@ -106,10 +120,10 @@ app.controller("forumController", ["$scope", "CacheService", function ($scope, C
 	};
 
 	$scope.clearSession = function () {
-		$scope.common.show = false;
-		$scope.common.loggedIn = false;
 		CacheService.clearSession();
-		location.replace("#!logout");
+		$scope.sessionData = CacheService.getSession();
+		$scope.resetCommon();
+		$location.path("/logout", true);
 	};
 
 	$scope.search = function () {
@@ -132,10 +146,12 @@ app.controller("forumController", ["$scope", "CacheService", function ($scope, C
 
 	$scope.$on("setLink", function (event, data) {
 		angular.element(document).ready(function () {
-			$("a.nav-link.menu-link.active").removeClass("active");
-			if (data.set == true) {
-				$(data.value).addClass("active");
-			}
+			$timeout(function () {
+				$("a.nav-link.menu-link.active").removeClass("active");
+				if (data.set == true) {
+					$(data.value).addClass("active");
+				}
+			}, 500);
 		});
 	});
 

@@ -30,18 +30,17 @@
   <div class="collapse navbar-collapse" id="collapseLinks">
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <strong><a id="homeLink" class="nav-link menu-link active" href="#!home/all">Home</a></strong>
+        <strong><a id="homeLink" class="nav-link menu-link" href="#!home/all">Home</a></strong>
       </li>
       <li class="nav-item" data-ng-if="common.loggedIn">
         <strong><a id="profileLink" class="nav-link menu-link"
             data-ng-href="#!profile/{{sessionData.currentUser.userName}}">Profile</a></strong>
       </li>
       <li class="nav-item" data-ng-if="common.loggedIn">
-        <strong><a id="logoutLink" class="nav-link menu-link" href="#!logout"
-            data-ng-click="clearSession()">Logout</a></strong>
+        <strong><a id="logoutLink" class="nav-link menu-link" data-ng-click="clearSession()">Logout</a></strong>
       </li>
       <li class="nav-item" data-ng-if="!common.loggedIn">
-        <a id="loginLink" class="nav-link menu-link" href="#!register?signUp=true">Sign Up</a>
+        <a id="loginLink" class="nav-link menu-link" href="#!register?value=signUp">Sign Up</a>
       </li>
     </ul>
   </div>

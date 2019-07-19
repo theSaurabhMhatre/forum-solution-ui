@@ -32,6 +32,74 @@ hr {
 	}
 }
 
+.grid-container {
+	display: grid;
+	grid-template-columns: auto;
+}
+
+@media screen and (max-width: 992px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 22.5% 77.5%;
+	}	
+}
+
+@media screen and (max-width: 950px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 25% 75%;
+	}	
+}
+
+@media screen and (max-width: 850px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 27.5% 72.5%;
+	}	
+}
+
+@media screen and (max-width: 800px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 30% 70%;
+	}	
+}
+
+@media screen and (max-width: 750px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 32.5% 67.5%;
+	}	
+}
+
+@media screen and (max-width: 700px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 35% 65%;
+	}	
+}
+
+@media screen and (max-width: 650px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 37.5% 62.5%;
+	}	
+}
+
+@media screen and (max-width: 600px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 40% 60%;
+	}	
+}
+
+@media screen and (max-width: 550px) {
+	.grid-container {
+		display: grid;
+		grid-template-columns: 45% 55%;
+	}	
+}
+
 .profile-card{
 	border: 5px solid;
 	border-color: #ababab;
@@ -78,4 +146,10 @@ hr {
 	border-color: #cacaca;
 	border-radius: 0;
 	padding: 10px;	
+}
+
+.image-responsive{
+	width:100%;
+	max-width:180;
+	height:auto;
 }

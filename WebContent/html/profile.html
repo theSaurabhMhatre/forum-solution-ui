@@ -7,7 +7,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit details</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="input-group">
@@ -44,12 +43,39 @@
         </div>
     </div>
 
+    <div class="modal fade" id="uploadAvatar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Upload Avatar</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-info" type="button" data-ng-click="uploadAvatar()">
+                                Upload
+                            </button>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="userAvatar">
+                            <label class="custom-file-label" for="userAvatar">Choose file</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-ng-click="closeUploadAvatar()">
+                        Done
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="editPswd">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Password</h5>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
                     <div class="input-group" data-ng-if="!common.pswdCheck">
@@ -99,11 +125,17 @@
 
     <div class="row" data-ng-if="common.pageExists">
         <div class="col-lg-2 mt-2">
-            <div class="profile-card">
-                <strong>BASIC DETAILS</strong>
-                <hr>
-                <h6>{{currentUser.userName}}</h6>
-                <small>{{currentUser.userMail}}</small>
+            <div
+                data-ng-class="{true: 'profile-card grid-container', false: 'profile-card'}[currentUser.userAvatar != null]">
+                <div data-ng-if="currentUser.userAvatar != null">
+                    <img data-ng-src="{{currentUser.userAvatar}}" height="180" width="180" class="image-responsive">
+                </div>
+                <div class="mt-2">
+                    <strong>BASIC DETAILS</strong>
+                    <hr>
+                    <h6>{{currentUser.userName}}</h6>
+                    <small>{{currentUser.userMail}}</small>
+                </div>
             </div>
             <div style="color: #ffffff; background-color: #ababab; padding: 5px 10px 10px 10px;">
                 <strong>{{currentUser.userBio}}</strong>
@@ -118,6 +150,13 @@
                 <button class="btn btn-basic btn-block mt-2" data-ng-click="commenceChangePswd()"
                     data-ng-if="common.editControls">
                     <small>Change password</small>
+                </button>
+            </div>
+            <div>
+                <button class="btn btn-basic btn-block mt-2" data-ng-click="commenceUploadAvatar()"
+                    data-ng-if="common.editControls">
+                    <small data-ng-if="currentUser.userAvatar == null">Set Avatar</small>
+                    <small data-ng-if="currentUser.userAvatar != null">Update Avatar</small>
                 </button>
             </div>
         </div>
@@ -166,8 +205,9 @@
                 <strong>LEADERBOARD</strong>
                 <hr>
                 <div data-ng-repeat="userRanking in userRankings track by $index">
-                    <button class="btn btn-basic btn-block mt-1" id="popover{{$index}}"
-                        data-ng-click="showProfile($index)"
+                    <button
+                        data-ng-class="{true: 'btn btn-info btn-block mt-1', false: 'btn btn-basic btn-block mt-1'}[common.routeUserName == userRanking[0]]"
+                        id="popover{{$index}}" data-ng-click="showProfile($index)"
                         data-ng-disabled="common.loggedIn && userRanking[0] == sessionData.currentUser.userName">
                         <small>{{userRanking[0] | uppercase}}</small>
                     </button>

@@ -27,7 +27,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 			} else if ($routeParams.category == "all") {
 				$scope.common.search.category = "";
 			} else {
-				location.replace("#!/home/all");
+				$location.path("/home/all", true);
 			}
 			QuestionFactory.getQuestions()
 				.then(function (response) {
@@ -37,6 +37,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 					if (data[0].length > 0) {
 						$scope.common.noQuestions = false;
 						$scope.setQuestionsAndAnswers(data);
+						$scope.checkAnswerLengths();
 						if ($scope.common.loggedIn) {
 							$scope.setLikesForQuestions(data);
 						}
@@ -44,6 +45,11 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 						$scope.setSelectedQuestion();
 					} else {
 						$scope.common.noQuestions = true;
+					}
+					var queryParams = $location.search();
+					if (queryParams.showQuestion != undefined && queryParams.showQuestion != null &&
+						queryParams.showQuestion == "true") {
+						$scope.common.askQuestion = true;
 					}
 				}, function (response) {
 					// failure
@@ -120,6 +126,20 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 			}
 		};
 
+		$scope.checkAnswerLengths = function () {
+			var currentQues, totalQuestions, index;
+			totalQuestions = $scope.allQuestions.length;
+			for (currentQues = 0; currentQues < totalQuestions; currentQues++) {
+				if ($scope.allQuestions[currentQues].answer.ans.length > 475) {
+					index = $scope.allQuestions[currentQues].answer.ans.indexOf(" ", 470);
+					$scope.allQuestions[currentQues].answer.ans = $scope.allQuestions[currentQues].answer.ans.slice(0, index);
+					$scope.allQuestions[currentQues].answer.lengthExceeded = true;
+				} else {
+					$scope.allQuestions[currentQues].answer.lengthExceeded = false;
+				}
+			}
+		};
+
 		$scope.getQuestionInfo = function (quesId, userId) {
 			$scope.selectedQuestion = {};
 			var currentQuestion, totalQuestions;
@@ -144,6 +164,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 							// success
 							var data = response.data.responseObject;
 							$scope.setQuestionsAndAnswers(data);
+							$scope.checkAnswerLengths();
 							if ($scope.common.loggedIn) {
 								$scope.setLikesForQuestions(data);
 							}
@@ -171,6 +192,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 							// success
 							var data = response.data.responseObject;
 							$scope.setQuestionsAndAnswers(data);
+							$scope.checkAnswerLengths();
 							if ($scope.common.loggedIn) {
 								$scope.setLikesForQuestions(data);
 							}
@@ -188,25 +210,36 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 
 		$scope.answerQuestion = function () {
 			if ($scope.common.loggedIn) {
-				location.replace("#!question/" + $scope.selectedQuestion.quesId +
-					"/answer/" + $scope.selectedQuestion.answer.ansId);
+				$location.path("/question/" + $scope.selectedQuestion.quesId +
+					"/answer/" + $scope.selectedQuestion.answer.ansId, true).search({ answerQuestion: "true" });
 			} else {
-				//replace this with something better later
-				alert("You need to login to answer a question :(");
+				var check = confirm("You need to login to answer questions. Do you wish to sign in?");
+				if (check) {
+					$location.path("/register", true).search({
+						redirect: "/question/" +
+							$scope.selectedQuestion.quesId + "/answer/" + $scope.selectedQuestion.answer.ansId,
+						answerQuestion: "true"
+					});
+				}
 			}
 		};
 
 		$scope.viewAnswers = function () {
-			location.replace("#!question/" + $scope.selectedQuestion.quesId +
-				"/answer/" + $scope.selectedQuestion.answer.ansId);
+			if ($location.search().showQuestion == "true") {
+				$location.search("showQuestion", null);
+			}
+			$location.path("/question/" + $scope.selectedQuestion.quesId +
+				"/answer/" + $scope.selectedQuestion.answer.ansId, true);
 		};
 
 		$scope.commenceAskQuestion = function () {
 			if ($scope.common.loggedIn) {
 				$scope.common.askQuestion = true;
 			} else {
-				//replace this with something better later
-				alert("You need to login to answer a question :(");
+				var check = confirm("You need to login to answer questions. Do you wish to sign in?");
+				if (check) {
+					$location.path("/register", true).search({ redirect: $location.url(), showQuestion: "true" });
+				}
 			}
 		};
 
@@ -234,6 +267,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 								// success
 								var data = response.data.responseObject;
 								$scope.setQuestionsAndAnswers(data);
+								$scope.checkAnswerLengths();
 								if ($scope.common.loggedIn) {
 									$scope.setLikesForQuestions(data);
 								}
@@ -287,9 +321,9 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 		};
 
 		$scope.$on("searchData", function (event, data) {
-			location.replace("#!search/" + data.type.toLowerCase() +
+			$location.path("/search/" + data.type.toLowerCase() +
 				"/category/" + data.category.toLowerCase() +
-				"/keyword/" + data.keyword.toLowerCase());
+				"/keyword/" + data.keyword.toLowerCase(), true);
 		});
 
 	}]);

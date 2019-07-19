@@ -92,6 +92,26 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 		return deferred.promise;
 	};
 
+	userAPIs.modifyAvatar = function (userName, userAvatar, mode) {
+		var deferred = $q.defer();
+		var config = {
+			method: "POST",
+			data: userAvatar,
+			url: CacheService.server.url + "/users/" + userName + "/avatar/" + mode,
+			transformRequest: angular.identity,
+			headers: { "Content-Type": undefined }
+		}
+		$http(config)
+			.then(function (response) {
+				// success
+				deferred.resolve(response);
+			}, function (response) {
+				// failure
+				deferred.reject(response);
+			});
+		return deferred.promise;
+	};
+
 	userAPIs.getUserRankings = function () {
 		var deferred = $q.defer();
 		var config = {
@@ -107,7 +127,7 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 				deferred.reject(response);
 			});
 		return deferred.promise;
-	}
+	};
 
 	return userAPIs;
 
