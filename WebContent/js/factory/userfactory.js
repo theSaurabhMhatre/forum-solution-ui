@@ -8,7 +8,10 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 		var deferred = $q.defer();
 		var config = {
 			method: "GET",
-			url: CacheService.server.url + "/users/" + userId
+			url: CacheService.server.url + "/users/" + userId,
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -26,7 +29,10 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 		var config = {
 			method: "POST",
 			data: userCreds,
-			url: CacheService.server.url + "/users/" + userCreds.userName + "/validate"
+			url: CacheService.server.url + "/users/" + userCreds.userName + "/validate",
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -43,7 +49,10 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 		var deferred = $q.defer();
 		var config = {
 			method: "GET",
-			url: CacheService.server.url + "/users/" + userName + "/available"
+			url: CacheService.server.url + "/users/" + userName + "/available",
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -61,7 +70,10 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 		var config = {
 			method: "POST",
 			data: user,
-			url: CacheService.server.url + "/users"
+			url: CacheService.server.url + "/users",
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -79,7 +91,10 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 		var config = {
 			method: "PUT",
 			data: user,
-			url: CacheService.server.url + "/users/" + user.userId + "/" + attribute
+			url: CacheService.server.url + "/users/" + user.userId + "/" + attribute,
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -99,7 +114,10 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 			data: userAvatar,
 			url: CacheService.server.url + "/users/" + userName + "/avatar/" + mode,
 			transformRequest: angular.identity,
-			headers: { "Content-Type": undefined }
+			headers: { 
+				"Content-Type": undefined,
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -116,7 +134,10 @@ app.factory("UserFactory", ["$http", "$q", "CacheService", function ($http, $q, 
 		var deferred = $q.defer();
 		var config = {
 			method: "GET",
-			url: CacheService.server.url + "/users/ranking"
+			url: CacheService.server.url + "/users/ranking",
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {

@@ -48,6 +48,9 @@ app.controller("registerController", ["$scope", "$location", "CacheService", "Us
                         $scope.sessionData = CacheService.common;
                         $scope.sessionData.currentUser = response.data.responseObject;
                         $scope.sessionData.loggedIn = true;
+                        // setting user specific token
+                        var token = btoa($scope.userCreds.userName + ":" + $scope.userCreds.userPswd);  
+                        $scope.sessionData.token = token;
                         CacheService.setSession($scope.sessionData);
                         $scope.$emit("showSearch", true);
                         var queryParams = $location.search();

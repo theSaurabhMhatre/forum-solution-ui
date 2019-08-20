@@ -8,7 +8,10 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function ($http, $q
 		var deferred = $q.defer();
 		var config = {
 			method: "GET",
-			url: CacheService.server.url + "/answers/" + quesId
+			url: CacheService.server.url + "/answers/" + quesId,
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -26,7 +29,10 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function ($http, $q
 		var config = {
 			method: "POST",
 			data: ans,
-			url: CacheService.server.url + "/answers"
+			url: CacheService.server.url + "/answers",
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -44,7 +50,10 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function ($http, $q
 		var config = {
 			method: "PUT",
 			data: ans,
-			url: CacheService.server.url + "/answers/" + ansId
+			url: CacheService.server.url + "/answers/" + ansId,
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -62,7 +71,10 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function ($http, $q
 		var config = {
 			method: "POST",
 			data: ansLike,
-			url: CacheService.server.url + "/answers/" + ansLike.ansId + "/like"
+			url: CacheService.server.url + "/answers/" + ansLike.ansId + "/like",
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -81,7 +93,8 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function ($http, $q
 			method: "DELETE",
 			data: ansLike,
 			headers: {
-				'content-type': 'application/json'
+				"content-type": "application/json",
+				"Authorization": "Basic " + CacheService.common.token
 			},
 			url: CacheService.server.url + "/answers/" + ansLike.ansId + "/dislike"
 		}
@@ -100,7 +113,10 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function ($http, $q
 		var deferred = $q.defer();
 		var config = {
 			method: "GET",
-			url: CacheService.server.url + "/answers/" + userId + "/likes"
+			url: CacheService.server.url + "/answers/" + userId + "/likes",
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {
@@ -117,7 +133,10 @@ app.factory("AnswerFactory", ["$http", "$q", "CacheService", function ($http, $q
 		var deferred = $q.defer();
 		var config = {
 			method: "GET",
-			url: CacheService.server.url + "/answers/" + ansId + "/question/" + quesId
+			url: CacheService.server.url + "/answers/" + ansId + "/question/" + quesId,
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {

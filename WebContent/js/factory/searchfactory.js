@@ -9,7 +9,10 @@ app.factory("SearchFactory", ["$http", "$q", "CacheService", function ($http, $q
 		var params = "type=" + search.type + "&category=" + search.category + "&keyword=" + search.keyword;
 		var config = {
 			method: "GET",
-			url: CacheService.server.url + "/search?" + params
+			url: CacheService.server.url + "/search?" + params,
+			headers: {
+				"Authorization": "Basic " + CacheService.common.token
+			}
 		}
 		$http(config)
 			.then(function (response) {

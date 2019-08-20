@@ -11,7 +11,7 @@ This project uses APIs defined in - [forum-solution](https://github.com/theSaura
 ##### The website currently has the following features:
 - User registration, login and logout
 - Users can ask questions and answer questions asked by other users
-- Questions and answers can be liked/disliked by users
+- Users can like or dislike (already liked) questions and answers
 - Questions and answers are always ordered on the basis of likes
 - Users are ranked on the basis of total likes received for questions asked and answers answered
 - Non-registered users can browse questions and answers without having to create an account

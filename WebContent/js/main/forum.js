@@ -49,6 +49,7 @@ app.service("CacheService", function () {
 		show: false,
 		loggedIn: false,
 		currentUser: null,
+		token: "Zm9ydW0tdWktaWQ6Zm9ydW0tdWktcEA1NXcwcmQ=",
 		categories: ["technology", "science", "history", "geography", "comics", "others"]
 	};
 
@@ -80,6 +81,7 @@ app.service("CacheService", function () {
 			show: false,
 			loggedIn: false,
 			currentUser: null,
+			token: "Zm9ydW0tdWktaWQ6Zm9ydW0tdWktcEA1NXcwcmQ=",
 			categories: ["technology", "science", "history", "geography", "comics", "others"]
 		};
 	};
