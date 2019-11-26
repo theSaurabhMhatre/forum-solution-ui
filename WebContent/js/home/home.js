@@ -10,6 +10,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 		$scope.questionOwner = {};
 		$scope.sessionData = {};
 		$scope.common = {
+			showLoader: true,
 			loggedIn: false,
 			categories: CacheService.common.categories,
 			quesMap: new Map(),
@@ -35,6 +36,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 					$scope.common.askQuestion = false;
 					var data = response.data.responseObject;
 					if (data[0].length > 0) {
+						$scope.common.showLoader = false;
 						$scope.common.noQuestions = false;
 						$scope.setQuestionsAndAnswers(data);
 						$scope.checkAnswerLengths();
@@ -44,6 +46,7 @@ app.controller("homeController", ["$scope", "$routeParams", "$location", "CacheS
 						$scope.populateQuesMap();
 						$scope.setSelectedQuestion();
 					} else {
+						$scope.common.showLoader = false;
 						$scope.common.noQuestions = true;
 					}
 					var queryParams = $location.search();

@@ -66,6 +66,12 @@
                         <strong>ALL QUESTIONS</strong>
                     </div>
                 </div>
+                <div class="home-main-container-no-scroll" data-ng-if="common.showLoader">
+                    <div class="d-flex align-items-center">
+                        <strong>Fetching the most popular questions...</strong>
+                        <div class="spinner-border text-info ml-auto" role="status" aria-hidden="true"></div>
+                    </div>
+                </div>
                 <div class="home-main-container-scroll" id="main-container">
                     <div
                         data-ng-repeat="question in allQuestions | filter: {category: common.search.category} track by $index">
