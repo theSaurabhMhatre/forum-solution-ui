@@ -34,6 +34,8 @@ app.controller("registerController", ["$scope", "$location", "CacheService", "Us
                         $("#myModal").modal("show");
                     } else if (queryParams.value == "userNameChange") {
                         alert("As you changed you username, please sign in again!");
+                    } else if (queryParams.value == "userPswdChange") {
+                        alert("As you changed you password, please sign in again!");
                     }
                 }
             }

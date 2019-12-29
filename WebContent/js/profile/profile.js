@@ -234,10 +234,12 @@ app.controller("profileController", ["$scope", "$timeout", "$location", "$route"
 						$scope.sessionData.currentUser = updatedUser;
 						CacheService.setSession($scope.sessionData);
 						if (attribute == "user_pswd") {
-							$scope.userCreds = {};
+							CacheService.clearSession();
+							$scope.$emit("showSearch", false);
 							$('#editPswd').modal('hide');
-							alert("Password changed successfully!");
-							$scope.common.pswdCheck = false;
+							$timeout(function () {
+								$location.path("/register", true).search({ value: "userPswdChange" });
+							}, 1000);
 						} else if (attribute == "user_name") {
 							CacheService.clearSession();
 							$scope.$emit("showSearch", false);
