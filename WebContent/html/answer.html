@@ -113,11 +113,11 @@
 					<small>Likes:</small>
 					<small data-ng-bind="selectedQuestion.likes"></small>
 				</div>
-				<button class="btn btn-basic btn-block mt-2" data-ng-click="commenceAnswerQuestion()">
+				<button class="btn btn-info btn-block mt-2" data-ng-click="commenceAnswerQuestion()">
 					<small>Answer question</small>
 				</button>
 				<div data-ng-if="selectedQuestion.askedBy==sessionData.currentUser.userId && common.loggedIn">
-					<button class="btn btn-basic btn-block mt-2" data-ng-click="commenceUpdateQuestion()">
+					<button class="btn btn-info btn-block mt-2" data-ng-click="commenceUpdateQuestion()">
 						<small>Edit question</small>
 					</button>
 				</div>
@@ -142,17 +142,17 @@
 					<small data-ng-bind="selectedAnswer.likes"></small>
 				</div>
 				<div class="btn-group btn-block mt-2" style="display:flex;" data-ng-if="common.loggedIn">
-					<button type="button" class="btn btn-basic btn-sm" style="flex:1;" data-ng-click="likeAnswer()"
+					<button type="button" class="btn btn-info btn-sm" style="flex:1;" data-ng-click="likeAnswer()"
 						data-ng-disabled="selectedAnswer.isLiked">
 						<span>Like</span>
 					</button>
-					<button type="button" class="btn btn-basic btn-sm" style="flex:1;" data-ng-click="dislikeAnswer()"
+					<button type="button" class="btn btn-info btn-sm" style="flex:1;" data-ng-click="dislikeAnswer()"
 						data-ng-disabled="!selectedAnswer.isLiked">
 						<span>Dislike</span>
 					</button>
 				</div>
 				<div data-ng-if="selectedAnswer.answeredBy==sessionData.currentUser.userId && common.loggedIn">
-					<button class="btn btn-basic btn-block mt-2" data-ng-click="commenceUpdateAnswer()">
+					<button class="btn btn-info btn-block mt-2" data-ng-click="commenceUpdateAnswer()">
 						<small>Edit answer</small>
 					</button>
 				</div>

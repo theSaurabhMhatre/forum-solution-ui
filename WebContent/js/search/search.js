@@ -108,7 +108,8 @@ app.controller("searchController", ["$scope", "$location", "$routeParams", "Cach
 					$scope.allQuestions[currentQues].answer.ans.toLowerCase().includes($scope.common.search.keyword) &&
 					$scope.common.search.type == "all") {
 					$scope.allQuestions[currentQues].badge = "both";
-				} else if ($scope.allQuestions[currentQues].ques.toLowerCase().includes($scope.common.search.keyword)) {
+				} else if ($scope.allQuestions[currentQues].ques.toLowerCase().includes($scope.common.search.keyword) &&
+					$scope.common.search.type != "answer") {
 					$scope.allQuestions[currentQues].badge = "question";
 				} else if ($scope.allQuestions[currentQues].answer.ans.toLowerCase().includes($scope.common.search.keyword) ||
 					$scope.allQuestions[currentQues].answer.lengthExceeded == true) {

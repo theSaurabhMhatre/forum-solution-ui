@@ -141,19 +141,19 @@
                 <strong>{{currentUser.userBio}}</strong>
             </div>
             <div>
-                <button class="btn btn-basic btn-block mt-2" data-ng-click="commenceEdit()"
+                <button class="btn btn-info btn-block mt-2" data-ng-click="commenceEdit()"
                     data-ng-if="common.editControls">
                     <small>Edit Details</small>
                 </button>
             </div>
             <div>
-                <button class="btn btn-basic btn-block mt-2" data-ng-click="commenceChangePswd()"
+                <button class="btn btn-info btn-block mt-2" data-ng-click="commenceChangePswd()"
                     data-ng-if="common.editControls">
                     <small>Change password</small>
                 </button>
             </div>
             <div>
-                <button class="btn btn-basic btn-block mt-2" data-ng-click="commenceUploadAvatar()"
+                <button class="btn btn-info btn-block mt-2" data-ng-click="commenceUploadAvatar()"
                     data-ng-if="common.editControls">
                     <small data-ng-if="currentUser.userAvatar == null">Set Avatar</small>
                     <small data-ng-if="currentUser.userAvatar != null">Update Avatar</small>
@@ -206,7 +206,7 @@
                 <hr>
                 <div data-ng-repeat="userRanking in userRankings track by $index">
                     <button
-                        data-ng-class="{true: 'btn btn-info btn-block mt-1', false: 'btn btn-basic btn-block mt-1'}[common.routeUserName == userRanking[0]]"
+                        data-ng-class="{true: 'btn btn-info btn-block mt-1', false: 'btn btn-info btn-block mt-1'}[common.routeUserName == userRanking[0]]"
                         id="popover{{$index}}" data-ng-click="showProfile($index)"
                         data-ng-disabled="common.loggedIn && userRanking[0] == sessionData.currentUser.userName">
                         <small>{{userRanking[0] | uppercase}}</small>
