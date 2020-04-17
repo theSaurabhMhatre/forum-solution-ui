@@ -1,90 +1,90 @@
 hr {
-	margin-top: 0rem;
+    margin-top: 0rem;
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 992px) {
-	hr {
-	  margin-top: 1rem;
-	  margin-bottom: 1rem;
-	  border: 0;
-	  border-top: 1px solid rgba(0, 0, 0, 0.1);
-	}
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
 }
 
-.home-margins{
-	margin-top: 2%;
-	margin-bottom: 5%;
-	margin-left: 10%;
-	margin-right: 10%;
-	min-height: 80%;
+.home-margins {
+    margin-top: 2%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    min-height: 80%;
 }
 
 @media screen and (max-width: 992px) {
-	.home-margins{
-		margin-top: 2%;
-		margin-bottom: 5%;
-		margin-left: 2%;
-		margin-right: 2%;
-		min-height: 80%;
-	}
+    .home-margins {
+        margin-top: 2%;
+        margin-bottom: 5%;
+        margin-left: 2%;
+        margin-right: 2%;
+        min-height: 80%;
+    }
 }
 
-.home-card{
-	border: 5px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	padding: 10px;
+.home-card {
+    border: 5px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    padding: 10px;
 }
 
-.home-selected-card{
-	color: #ffffff;
+.home-selected-card {
+    color: #ffffff;
     background-color: #949494;
-	border: 5px solid;
-	border-color: #cacaca;
-	border-radius: 0;
-	padding: 10px;
+    border: 5px solid;
+    border-color: #cacaca;
+    border-radius: 0;
+    padding: 10px;
 }
 
-.home-answer-card{
-	border: 2px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	padding: 10px;
+.home-answer-card {
+    border: 2px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    padding: 10px;
 }
 
-.home-selected-answer-card{
-	background-color: #ffffff;
+.home-selected-answer-card {
+    background-color: #ffffff;
     color: #000000;
-	border: 2px solid;
-	border-color: #cacaca;
-	border-radius: 0;
-	padding: 10px;
+    border: 2px solid;
+    border-color: #cacaca;
+    border-radius: 0;
+    padding: 10px;
 }
 
-.home-side-container{
-	border: 5px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	padding: 5px;
+.home-side-container {
+    border: 5px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    padding: 5px;
 }
 
-.home-main-container-no-scroll{
-	border: 2px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	overflow: auto;
-	padding: 10px;
-	margin-bottom: 10px;
+.home-main-container-no-scroll {
+    border: 2px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    overflow: auto;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
-.home-main-container-scroll{
-	border: 2px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	overflow-y: scroll;
-	max-height: 35rem;
-	padding: 10px;
+.home-main-container-scroll {
+    border: 2px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    overflow-y: scroll;
+    max-height: 35rem;
+    padding: 10px;
 }

@@ -1,6 +1,9 @@
 <div data-ng-include="'/forum/html/header.html'"></div>
 
-<div data-ng-controller="searchController" data-ng-init="init()" class="search-margins" style="margin-bottom: 6rem;">
+<div data-ng-controller="searchController"
+     data-ng-init="init()"
+     class="search-margins"
+     style="margin-bottom: 6rem;">
 
     <div class="row">
         <div class="col-lg-3 mt-2">
@@ -22,7 +25,8 @@
                     <small data-ng-bind="common.count.answers"></small>
                 </div>
             </div>
-            <div class="home-side-container mt-2" data-ng-if="!common.noResults">
+            <div class="home-side-container mt-2"
+                 data-ng-if="!common.noResults">
                 <div>
                     <strong>QUESTION DETAILS</strong>
                 </div>
@@ -47,7 +51,8 @@
                     <small>Likes:</small>
                     <small data-ng-bind="selectedQuestion.likes"></small>
                 </div>
-                <button class="btn btn-info btn-block mt-1" data-ng-click="viewDetails()">
+                <button class="btn btn-info btn-block mt-1"
+                        data-ng-click="viewDetails()">
                     <small>View details</small>
                 </button>
             </div>
@@ -57,31 +62,31 @@
             <div class="search-main-container-no-scroll">
                 <strong>SEARCH RESULTS</strong>
             </div>
-            <div class="search-main-container-scroll" data-ng-if="!common.noResults">
+            <div class="search-main-container-scroll"
+                 data-ng-if="!common.noResults">
                 <div data-ng-repeat="question in allQuestions track by $index">
                     <div data-ng-class="{true:'search-selected-card mt-2', false:'search-card mt-2'}[topAnswers[$index].ansId == selectedAnswer.ansId]"
-                        data-ng-click="getQuestionInfo(question.quesId, question.askedBy, $index)">
+                         data-ng-click="getQuestionInfo(question.quesId, question.askedBy, $index)">
                         <h6>
                             {{question.ques}}
                         </h6>
-                        <div
-                            data-ng-class="{true:'search-selected-answer-card', false:'search-answer-card'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
+                        <div data-ng-class="{true:'search-selected-answer-card', false:'search-answer-card'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
                             <small>{{question.answer.ans}}</small>
                             <small data-ng-if="question.answer.lengthExceeded">
-                                <a data-ng-href="#!question/{{question.quesId}}/answer/{{question.answer.ansId}}">(view
-                                    more...)</a>
+                                <a data-ng-href="#!question/{{question.quesId}}/answer/{{question.answer.ansId}}">
+                                    (view more...)
+                                </a>
                             </small>
                         </div>
-                        <div class="mt-1" style="text-align: right;">
+                        <div class="mt-1"
+                             style="text-align: right;">
                             <span data-ng-if="question.badge=='question' || question.badge=='both'">
-                                <span
-                                    data-ng-class="{true: 'badge badge-light', false: 'badge badge-info'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
+                                <span data-ng-class="{true: 'badge badge-light', false: 'badge badge-info'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
                                     Question
                                 </span>
                             </span>
                             <span data-ng-if="question.badge=='answer' || question.badge=='both'">
-                                <span
-                                    data-ng-class="{true: 'badge badge-light', false: 'badge badge-info'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
+                                <span data-ng-class="{true: 'badge badge-light', false: 'badge badge-info'}[topAnswers[$index].ansId == selectedAnswer.ansId]">
                                     Answer
                                 </span>
                             </span>
@@ -89,7 +94,8 @@
                     </div>
                 </div>
             </div>
-            <div class="search-main-container-no-scroll" data-ng-if="common.noResults">
+            <div class="search-main-container-no-scroll"
+                 data-ng-if="common.noResults">
                 <strong>No results matching your query!</strong>
             </div>
         </div>

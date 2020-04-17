@@ -1,81 +1,81 @@
 hr {
-	margin-top: 0rem;
+    margin-top: 0rem;
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 992px) {
-	hr {
-	  margin-top: 1rem;
-	  margin-bottom: 1rem;
-	  border: 0;
-	  border-top: 1px solid rgba(0, 0, 0, 0.1);
-	}
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
 }
 
-.answer-margins{
-	margin-top: 2%;
-	margin-bottom: 5%;
-	margin-left: 10%;
-	margin-right: 10%;
-	min-height: 80%;
+.answer-margins {
+    margin-top: 2%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    min-height: 80%;
 }
 
 @media screen and (max-width: 992px) {
-	.answer-margins{
-		margin-top: 2%;
-		margin-bottom: 5%;
-		margin-left: 2%;
-		margin-right: 2%;
-		min-height: 80%;
-	}
+    .answer-margins {
+        margin-top: 2%;
+        margin-bottom: 5%;
+        margin-left: 2%;
+        margin-right: 2%;
+        min-height: 80%;
+    }
 }
 
-.ans-question-card{
-	border: 5px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	padding: 10px;
+.ans-question-card {
+    border: 5px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    padding: 10px;
 }
 
-.ans-answer-card{
-	border: 2px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	padding: 10px;
+.ans-answer-card {
+    border: 2px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    padding: 10px;
 }
 
-.ans-selected-answer-card{
+.ans-selected-answer-card {
     color: #ffffff;
     background-color: #949494;
-	border: 2px solid;
-	border-color: #cacaca;
-	border-radius: 0;
-	padding: 10px;
+    border: 2px solid;
+    border-color: #cacaca;
+    border-radius: 0;
+    padding: 10px;
 }
 
-.answer-side-container{
-	border: 5px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	padding: 5px;
+.answer-side-container {
+    border: 5px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    padding: 5px;
 }
 
-.answer-main-container-scroll{
-	border: 2px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	overflow-y: scroll;
-	max-height: 20rem;
-	padding: 10px;
+.answer-main-container-scroll {
+    border: 2px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    overflow-y: scroll;
+    max-height: 20rem;
+    padding: 10px;
 }
 
-.answer-main-container-no-scroll{
-	border: 2px solid;
-	border-color: #ababab;
-	border-radius: 0;
-	overflow: auto;
-	padding: 10px;
-	margin-bottom: 10px;
+.answer-main-container-no-scroll {
+    border: 2px solid;
+    border-color: #ababab;
+    border-radius: 0;
+    overflow: auto;
+    padding: 10px;
+    margin-bottom: 10px;
 }

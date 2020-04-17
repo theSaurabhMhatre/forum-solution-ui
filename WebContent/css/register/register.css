@@ -1,48 +1,48 @@
 hr {
-	margin-top: 0rem;
+    margin-top: 0rem;
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 @media screen and (max-width: 992px) {
-	hr {
-	  margin-top: 1rem;
-	  margin-bottom: 1rem;
-	  border: 0;
-	  border-top: 1px solid rgba(0, 0, 0, 0.1);
-	}
+    hr {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border: 0;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
 }
 
-.background{
-	margin-top: 10%;
-	background-color: #dedede;
-	border-radius: 5px;
-	padding-top: 20px;
-	padding-bottom: 20px;
-	padding-left: 10px;
-	padding-right: 10px;
-	margin-left: 10%;
-	margin-right: 10%;
+.background {
+    margin-top: 10%;
+    background-color: #dedede;
+    border-radius: 5px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 @media screen and (max-width: 992px) {
-	.background{
-		margin-top: 10%;
-		background-color: #dedede;
-		border-radius: 5px;
-		padding-top: 20px;
-		padding-bottom: 20px;
-		margin-left: 10%;
-		margin-right: 10%;
-	}
+    .background {
+        margin-top: 10%;
+        background-color: #dedede;
+        border-radius: 5px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        margin-left: 10%;
+        margin-right: 10%;
+    }
 }
 
-.register{
-	background-color: #aaaaaa;
-	border-radius: 5px;
-	padding-top: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-bottom: 5px;
+.register {
+    background-color: #aaaaaa;
+    border-radius: 5px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
 }

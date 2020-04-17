@@ -1,8 +1,12 @@
 <div data-ng-include="'/forum/html/header.html'"></div>
 
-<div data-ng-controller="homeController" data-ng-init="init()" class="home-margins" style="margin-bottom: 6rem;">
+<div data-ng-controller="homeController"
+     data-ng-init="init()"
+     class="home-margins"
+     style="margin-bottom: 6rem;">
 
-    <div class="modal fade" id="myModal">
+    <div class="modal fade"
+         id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -13,19 +17,26 @@
                     <h5>{{common.ques.ques}}</h5>
                     <small>Question category</small>
                     <div class="form-group">
-                        <select class="form-control" data-ng-model="common.ques.category"
-                            data-ng-options="category for category in common.categories">
+                        <select class="form-control"
+                                data-ng-model="common.ques.category"
+                                data-ng-options="category for category in common.categories">
                         </select>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-ng-click="askQuestion()">
+                    <button type="button"
+                            class="btn btn-success"
+                            data-ng-click="askQuestion()">
                         Confirm
                     </button>
-                    <button type="button" class="btn btn-info" data-dismiss="modal">
+                    <button type="button"
+                            class="btn btn-info"
+                            data-dismiss="modal">
                         Change
                     </button>
-                    <button type="button" class="btn btn-danger" data-ng-click="cancelAskQuestion()">
+                    <button type="button"
+                            class="btn btn-danger"
+                            data-ng-click="cancelAskQuestion()">
                         Cancel
                     </button>
                 </div>
@@ -39,20 +50,30 @@
                 <div data-ng-if="common.askQuestion">
                     <div class="home-main-container-no-scroll">
                         <div class="form-group mt-2">
-                            <textarea class="form-control" style="border: 2px solid #ababab;"
-                                placeholder="Your question goes here..." data-ng-model="common.ques.ques"></textarea>
+                            <textarea class="form-control"
+                                      style="border: 2px solid #ababab;"
+                                      placeholder="Your question goes here..."
+                                      data-ng-model="common.ques.ques">
+                            </textarea>
                         </div>
-                        <div class="btn-group btn-block mt-2" style="display:flex;">
-                            <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                                data-ng-click="validateQuestion()">
+                        <div class="btn-group btn-block mt-2"
+                             style="display:flex;">
+                            <button type="button"
+                                    class="btn btn-info btn-sm"
+                                    style="flex:1;"
+                                    data-ng-click="validateQuestion()">
                                 <span>Submit</span>
                             </button>
-                            <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                                data-ng-click="resetQuestion()">
+                            <button type="button"
+                                    class="btn btn-info btn-sm"
+                                    style="flex:1;"
+                                    data-ng-click="resetQuestion()">
                                 <span>Reset</span>
                             </button>
-                            <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                                data-ng-click="cancelAskQuestion()">
+                            <button type="button"
+                                    class="btn btn-info btn-sm"
+                                    style="flex:1;"
+                                    data-ng-click="cancelAskQuestion()">
                                 <span>Not now</span>
                             </button>
                         </div>
@@ -66,41 +87,48 @@
                         <strong>ALL QUESTIONS</strong>
                     </div>
                 </div>
-                <div class="home-main-container-no-scroll" data-ng-if="common.showLoader">
+                <div class="home-main-container-no-scroll"
+                     data-ng-if="common.showLoader">
                     <div class="d-flex align-items-center">
                         <strong>Fetching the most popular questions...</strong>
-                        <div class="spinner-border text-info ml-auto" role="status" aria-hidden="true"></div>
+                        <div class="spinner-border text-info ml-auto"
+                             role="status"
+                             aria-hidden="true">
+                        </div>
                     </div>
                 </div>
-                <div class="home-main-container-scroll" id="main-container">
-                    <div
-                        data-ng-repeat="question in allQuestions | filter: {category: common.search.category} track by $index">
+                <div class="home-main-container-scroll"
+                     id="main-container">
+                    <div data-ng-repeat="question in allQuestions | filter: {category: common.search.category} track by $index">
                         <div data-ng-class="{true:'home-selected-card mt-2', false:'home-card mt-2'}[question.quesId == selectedQuestion.quesId]"
-                            data-ng-click="getQuestionInfo(question.quesId, question.askedBy)"
-                            data-ng-attr-id="{{question.quesId}}">
+                             data-ng-click="getQuestionInfo(question.quesId, question.askedBy)"
+                             data-ng-attr-id="{{question.quesId}}">
                             <h6>{{question.ques}}</h6>
-                            <div
-                                data-ng-class="{true:'home-selected-answer-card', false:'home-answer-card'}[question.quesId == selectedQuestion.quesId]">
+                            <div data-ng-class="{true:'home-selected-answer-card', false:'home-answer-card'}[question.quesId == selectedQuestion.quesId]">
                                 <small>{{question.answer.ans}}</small>
                                 <small data-ng-if="question.answer.lengthExceeded">
-                                    <a data-ng-href="#!question/{{question.quesId}}/answer/{{question.answer.ansId}}">(view
-                                        more...)</a>
+                                    <a data-ng-href="#!question/{{question.quesId}}/answer/{{question.answer.ansId}}">
+                                        (view more...)
+                                    </a>
                                 </small>
                             </div>
                         </div>
                     </div>
-                    <div class="home-card" data-ng-if="selectedQuestion==undefined">
+                    <div class="home-card"
+                         data-ng-if="selectedQuestion==undefined">
                         No Questions belonging to this category!
                     </div>
                 </div>
             </div>
             <div class="col-lg-3 mt-2">
                 <div>
-                    <button class="btn btn-info btn-block" data-ng-click="commenceAskQuestion()">
+                    <button class="btn btn-info btn-block"
+                            data-ng-click="commenceAskQuestion()">
                         <small>Ask a question</small>
                     </button>
                 </div>
-                <div class="home-side-container mt-2" data-ng-if="selectedQuestion!=undefined">
+                <div class="home-side-container mt-2"
+                     data-ng-if="selectedQuestion!=undefined">
                     <div>
                         <strong>QUESTION DETAILS</strong>
                     </div>
@@ -125,20 +153,30 @@
                         <small>Likes:</small>
                         <small data-ng-bind="selectedQuestion.likes"></small>
                     </div>
-                    <div class="btn-group btn-block mt-2" style="display:flex;" data-ng-if="common.loggedIn">
-                        <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                            data-ng-click="likeQuestion()" data-ng-disabled="selectedQuestion.isLiked">
+                    <div class="btn-group btn-block mt-2"
+                         style="display:flex;"
+                         data-ng-if="common.loggedIn">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                style="flex:1;"
+                                data-ng-click="likeQuestion()"
+                                data-ng-disabled="selectedQuestion.isLiked">
                             <span>Like</span>
                         </button>
-                        <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                            data-ng-click="dislikeQuestion()" data-ng-disabled="!selectedQuestion.isLiked">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                style="flex:1;"
+                                data-ng-click="dislikeQuestion()"
+                                data-ng-disabled="!selectedQuestion.isLiked">
                             <span>Dislike</span>
                         </button>
                     </div>
-                    <button class="btn btn-info btn-block mt-2" data-ng-click="answerQuestion()">
+                    <button class="btn btn-info btn-block mt-2"
+                            data-ng-click="answerQuestion()">
                         <small>Answer this question</small>
                     </button>
-                    <button class="btn btn-info btn-block mt-2" data-ng-click="viewAnswers()">
+                    <button class="btn btn-info btn-block mt-2"
+                            data-ng-click="viewAnswers()">
                         <small>View all answers</small>
                     </button>
                 </div>
@@ -147,40 +185,58 @@
                         <strong>QUESTION FILTERS</strong>
                     </div>
                     <hr>
-                    <div class="btn-group btn-block mt-2" style="display:flex;">
-                        <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                            data-ng-click="setFilter('technology')"
-                            data-ng-disabled="common.search.category=='technology'">
+                    <div class="btn-group btn-block mt-2"
+                         style="display:flex;">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                style="flex:1;"
+                                data-ng-click="setFilter('technology')"
+                                data-ng-disabled="common.search.category=='technology'">
                             <span>Technology</span>
                         </button>
-                        <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                            data-ng-click="setFilter('science')" data-ng-disabled="common.search.category=='science'">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                style="flex:1;"
+                                data-ng-click="setFilter('science')"
+                                data-ng-disabled="common.search.category=='science'">
                             <span>Science</span>
                         </button>
                     </div>
                     <div class="btn-group btn-block mt-2">
-                        <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                            data-ng-click="setFilter('history')" data-ng-disabled="common.search.category=='history'">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                style="flex:1;"
+                                data-ng-click="setFilter('history')"
+                                data-ng-disabled="common.search.category=='history'">
                             <span>History</span>
                         </button>
-                        <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                            data-ng-click="setFilter('geography')"
-                            data-ng-disabled="common.search.category=='geography'">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                style="flex:1;"
+                                data-ng-click="setFilter('geography')"
+                                data-ng-disabled="common.search.category=='geography'">
                             <span>Geography</span>
                         </button>
                     </div>
                     <div class="btn-group btn-block mt-2">
-                        <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                            data-ng-click="setFilter('comics')" data-ng-disabled="common.search.category=='comics'">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                style="flex:1;"
+                                data-ng-click="setFilter('comics')"
+                                data-ng-disabled="common.search.category=='comics'">
                             <span>Comics</span>
                         </button>
-                        <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                            data-ng-click="setFilter('others')" data-ng-disabled="common.search.category=='others'">
+                        <button type="button"
+                                class="btn btn-info btn-sm"
+                                style="flex:1;"
+                                data-ng-click="setFilter('others')"
+                                data-ng-disabled="common.search.category=='others'">
                             <span>Others</span>
                         </button>
                     </div>
-                    <button class="btn btn-info btn-block mt-2" data-ng-click="setFilter('')"
-                        data-ng-disabled="common.search.category==''">
+                    <button class="btn btn-info btn-block mt-2"
+                            data-ng-click="setFilter('')"
+                            data-ng-disabled="common.search.category==''">
                         <small>All Questions</small>
                     </button>
                 </div>
@@ -190,32 +246,44 @@
 
     <div data-ng-if="common.noQuestions">
         <div class="row">
-            <div class="col-sm-12" style="text-align: center;">
+            <div class="col-sm-12"
+                 style="text-align: center;">
                 <div class="home-card">
                     <p><strong>No questions have been asked yet!</strong></p>
                     <p><strong>Be the first one to post a question :D</strong></p>
                     <p><strong>Remember to refresh after asking the question :)</strong></p>
                 </div>
-                <button class="btn btn-info btn-block mt-2" data-ng-click="commenceAskQuestion()">
+                <button class="btn btn-info btn-block mt-2"
+                        data-ng-click="commenceAskQuestion()">
                     <small>Ask a Question</small>
                 </button>
                 <div data-ng-if="common.askQuestion && common.loggedIn">
                     <div class="home-main-container-no-scroll mt-2">
                         <div class="form-group mt-2">
-                            <textarea class="form-control" style="border: 2px solid #ababab;"
-                                placeholder="Your question goes here..." data-ng-model="common.ques.ques"></textarea>
+                            <textarea class="form-control"
+                                      style="border: 2px solid #ababab;"
+                                      placeholder="Your question goes here..."
+                                      data-ng-model="common.ques.ques">
+                            </textarea>
                         </div>
-                        <div class="btn-group btn-block mt-2" style="display:flex;">
-                            <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                                data-ng-click="validateQuestion()">
+                        <div class="btn-group btn-block mt-2"
+                             style="display:flex;">
+                            <button type="button"
+                                    class="btn btn-info btn-sm"
+                                    style="flex:1;"
+                                    data-ng-click="validateQuestion()">
                                 <span>Submit</span>
                             </button>
-                            <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                                data-ng-click="resetQuestion()">
+                            <button type="button"
+                                    class="btn btn-info btn-sm"
+                                    style="flex:1;"
+                                    data-ng-click="resetQuestion()">
                                 <span>Reset</span>
                             </button>
-                            <button type="button" class="btn btn-info btn-sm" style="flex:1;"
-                                data-ng-click="cancelAskQuestion()">
+                            <button type="button"
+                                    class="btn btn-info btn-sm"
+                                    style="flex:1;"
+                                    data-ng-click="cancelAskQuestion()">
                                 <span>Not now</span>
                             </button>
                         </div>

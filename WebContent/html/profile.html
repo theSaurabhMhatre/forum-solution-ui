@@ -1,8 +1,12 @@
 <div data-ng-include="'/forum/html/header.html'"></div>
 
-<div data-ng-controller="profileController" data-ng-init="init()" class="profile-margins" style="margin-bottom: 6rem;">
+<div data-ng-controller="profileController"
+     data-ng-init="init()"
+     class="profile-margins"
+     style="margin-bottom: 6rem;">
 
-    <div class="modal fade" id="editDetails">
+    <div class="modal fade"
+         id="editDetails">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -10,32 +14,46 @@
                 </div>
                 <div class="modal-body">
                     <div class="input-group">
-                        <input type="text" class="form-control" data-ng-model="tempUser.userName">
+                        <input type="text"
+                               class="form-control"
+                               data-ng-model="tempUser.userName">
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button" data-ng-click="performEdit('user_name')">
+                            <button class="btn btn-info"
+                                    type="button"
+                                    data-ng-click="performEdit('user_name')">
                                 Change
                             </button>
                         </div>
                     </div>
                     <div class="input-group mt-2">
-                        <input type="text" class="form-control" data-ng-model="tempUser.userMail">
+                        <input type="text"
+                               class="form-control"
+                               data-ng-model="tempUser.userMail">
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button" data-ng-click="performEdit('user_mail')">
+                            <button class="btn btn-info"
+                                    type="button"
+                                    data-ng-click="performEdit('user_mail')">
                                 Change
                             </button>
                         </div>
                     </div>
                     <div class="input-group mt-2">
-                        <input type="text" class="form-control" data-ng-model="tempUser.userBio">
+                        <input type="text"
+                               class="form-control"
+                               data-ng-model="tempUser.userBio">
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button" data-ng-click="performEdit('user_bio')">
+                            <button class="btn btn-info"
+                                    type="button"
+                                    data-ng-click="performEdit('user_bio')">
                                 Change
                             </button>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-ng-click="closeEdit()">
+                    <button type="button"
+                            class="btn btn-success"
+                            data-ng-click="closeEdit()">
                         Done
                     </button>
                 </div>
@@ -43,7 +61,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="uploadAvatar">
+    <div class="modal fade"
+         id="uploadAvatar">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -52,18 +71,27 @@
                 <div class="modal-body">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <button class="btn btn-info" type="button" data-ng-click="uploadAvatar()">
+                            <button class="btn btn-info"
+                                    type="button"
+                                    data-ng-click="uploadAvatar()">
                                 Upload
                             </button>
                         </div>
                         <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="userAvatar">
-                            <label class="custom-file-label" for="userAvatar">Choose file</label>
+                            <input type="file"
+                                   class="custom-file-input"
+                                   id="userAvatar">
+                            <label class="custom-file-label"
+                                   for="userAvatar">
+                                Choose file
+                            </label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-ng-click="closeUploadAvatar()">
+                    <button type="button"
+                            class="btn btn-success"
+                            data-ng-click="closeUploadAvatar()">
                         Done
                     </button>
                 </div>
@@ -71,20 +99,26 @@
         </div>
     </div>
 
-    <div class="modal fade" id="editPswd">
+    <div class="modal fade"
+         id="editPswd">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">Edit Password</h5>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group" data-ng-if="!common.pswdCheck">
+                    <div class="input-group"
+                         data-ng-if="!common.pswdCheck">
                         <div class="input-group-prepend">
                             <span class="input-group-text property-width"><small>Current Pswd</small></span>
                         </div>
-                        <input type="password" class="form-control" data-ng-model="userCreds.userPswd">
+                        <input type="password"
+                               class="form-control"
+                               data-ng-model="userCreds.userPswd">
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button" data-ng-click="validatePswd()">
+                            <button class="btn btn-info"
+                                    type="button"
+                                    data-ng-click="validatePswd()">
                                 Validate
                             </button>
                         </div>
@@ -94,24 +128,32 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text property-width"><small>New Pswd</small></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="@@##$$%%"
-                                data-ng-model="tempUser.userPswd">
+                            <input type="password"
+                                   class="form-control"
+                                   placeholder="@@##$$%%"
+                                   data-ng-model="tempUser.userPswd">
                         </div>
                         <div class="input-group mt-2">
                             <div class="input-group-prepend">
                                 <span class="input-group-text property-width"><small>Confirm Pswd</small></span>
                             </div>
-                            <input type="password" class="form-control" placeholder="@@##$$%%"
-                                data-ng-model="tempUser.userPswdConfirm">
+                            <input type="password"
+                                   class="form-control"
+                                   placeholder="@@##$$%%"
+                                   data-ng-model="tempUser.userPswdConfirm">
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-ng-click="performEdit('user_pswd')"
-                        data-ng-if="common.pswdCheck">
+                    <button type="button"
+                            class="btn btn-success"
+                            data-ng-click="performEdit('user_pswd')"
+                            data-ng-if="common.pswdCheck">
                         Change
                     </button>
-                    <button type="button" class="btn btn-danger" data-ng-click="closeEditPswd()">
+                    <button type="button"
+                            class="btn btn-danger"
+                            data-ng-click="closeEditPswd()">
                         Cancel
                     </button>
                 </div>
@@ -123,12 +165,15 @@
         <div data-ng-include="'/forum/html/fourzerofour.html'"></div>
     </div>
 
-    <div class="row" data-ng-if="common.pageExists">
+    <div class="row"
+         data-ng-if="common.pageExists">
         <div class="col-lg-2 mt-2">
-            <div
-                data-ng-class="{true: 'profile-card grid-container', false: 'profile-card'}[currentUser.userAvatar != null]">
+            <div data-ng-class="{true: 'profile-card grid-container', false: 'profile-card'}[currentUser.userAvatar != null]">
                 <div data-ng-if="currentUser.userAvatar != null">
-                    <img data-ng-src="{{currentUser.userAvatar}}" height="180" width="180" class="image-responsive">
+                    <img data-ng-src="{{currentUser.userAvatar}}"
+                         height="180"
+                         width="180"
+                         class="image-responsive">
                 </div>
                 <div class="mt-2">
                     <strong>BASIC DETAILS</strong>
@@ -141,20 +186,23 @@
                 <strong>{{currentUser.userBio}}</strong>
             </div>
             <div>
-                <button class="btn btn-info btn-block mt-2" data-ng-click="commenceEdit()"
-                    data-ng-if="common.editControls">
+                <button class="btn btn-info btn-block mt-2"
+                        data-ng-click="commenceEdit()"
+                        data-ng-if="common.editControls">
                     <small>Edit Details</small>
                 </button>
             </div>
             <div>
-                <button class="btn btn-info btn-block mt-2" data-ng-click="commenceChangePswd()"
-                    data-ng-if="common.editControls">
+                <button class="btn btn-info btn-block mt-2"
+                        data-ng-click="commenceChangePswd()"
+                        data-ng-if="common.editControls">
                     <small>Change password</small>
                 </button>
             </div>
             <div>
-                <button class="btn btn-info btn-block mt-2" data-ng-click="commenceUploadAvatar()"
-                    data-ng-if="common.editControls">
+                <button class="btn btn-info btn-block mt-2"
+                        data-ng-click="commenceUploadAvatar()"
+                        data-ng-if="common.editControls">
                     <small data-ng-if="currentUser.userAvatar == null">Set Avatar</small>
                     <small data-ng-if="currentUser.userAvatar != null">Update Avatar</small>
                 </button>
@@ -164,38 +212,40 @@
             <div class="profile-container-scroll">
                 <strong>QUESTIONS ASKED</strong>
                 <hr>
-                <div data-ng-if="askedQuestions.length > 0" data-ng-repeat="question in askedQuestions">
-                    <div class="profile-question-card mt-2" data-ng-click="viewAskedQuestion(question)"
-                        data-ng-mouseover="addClassQues(question.quesId)"
-                        data-ng-mouseout="removeClassQues(question.quesId)" id="quesNum{{question.quesId}}">
+                <div data-ng-if="askedQuestions.length > 0"
+                     data-ng-repeat="question in askedQuestions">
+                    <div class="profile-question-card mt-2"
+                         data-ng-click="viewAskedQuestion(question)"
+                         data-ng-mouseover="addClassQues(question.quesId)"
+                         data-ng-mouseout="removeClassQues(question.quesId)"
+                         id="quesNum{{question.quesId}}">
                         {{question.ques}}
                     </div>
                 </div>
-                <div
-                    data-ng-if="common.loggedIn && common.routeUserName == sessionData.currentUser.userName && askedQuestions.length == 0">
+                <div data-ng-if="common.loggedIn && common.routeUserName == sessionData.currentUser.userName && askedQuestions.length == 0">
                     <h6>You've not asked any questions yet!</h6>
                 </div>
-                <div
-                    data-ng-if="(common.loggedIn || !common.loggedIn) && common.routeUserName != sessionData.currentUser.userName && askedQuestions.length == 0">
+                <div data-ng-if="(common.loggedIn || !common.loggedIn) && common.routeUserName != sessionData.currentUser.userName && askedQuestions.length == 0">
                     <h6>User has not asked any questions yet!</h6>
                 </div>
             </div>
             <div class="profile-container-scroll mt-2">
                 <strong>QUESTIONS ANSWERED</strong>
                 <hr>
-                <div data-ng-if="answeredQuestions.length > 0" data-ng-repeat="question in answeredQuestions">
-                    <div class="profile-question-card mt-2" data-ng-click="viewAnsweredQuestion(question, $index)"
-                        data-ng-mouseover="addClassAns(question.quesId)"
-                        data-ng-mouseout="removeClassAns(question.quesId)" id="ansNum{{question.quesId}}">
+                <div data-ng-if="answeredQuestions.length > 0"
+                     data-ng-repeat="question in answeredQuestions">
+                    <div class="profile-question-card mt-2"
+                         data-ng-click="viewAnsweredQuestion(question, $index)"
+                         data-ng-mouseover="addClassAns(question.quesId)"
+                         data-ng-mouseout="removeClassAns(question.quesId)"
+                         id="ansNum{{question.quesId}}">
                         {{question.ques}}
                     </div>
                 </div>
-                <div
-                    data-ng-if="common.loggedIn && common.routeUserName == sessionData.currentUser.userName && answeredQuestions.length == 0">
+                <div data-ng-if="common.loggedIn && common.routeUserName == sessionData.currentUser.userName && answeredQuestions.length == 0">
                     <h6>You've not answered any questions yet!</h6>
                 </div>
-                <div
-                    data-ng-if="(common.loggedIn || !common.loggedIn) && common.routeUserName != sessionData.currentUser.userName && answeredQuestions.length == 0">
+                <div data-ng-if="(common.loggedIn || !common.loggedIn) && common.routeUserName != sessionData.currentUser.userName && answeredQuestions.length == 0">
                     <h6>User has not answered any questions yet!</h6>
                 </div>
             </div>
@@ -205,10 +255,10 @@
                 <strong>LEADERBOARD</strong>
                 <hr>
                 <div data-ng-repeat="userRanking in userRankings track by $index">
-                    <button
-                        data-ng-class="{true: 'btn btn-info btn-block mt-1', false: 'btn btn-info btn-block mt-1'}[common.routeUserName == userRanking[0]]"
-                        id="popover{{$index}}" data-ng-click="showProfile($index)"
-                        data-ng-disabled="common.loggedIn && userRanking[0] == sessionData.currentUser.userName">
+                    <button data-ng-class="{true: 'btn btn-info btn-block mt-1', false: 'btn btn-info btn-block mt-1'}[common.routeUserName == userRanking[0]]"
+                            id="popover{{$index}}"
+                            data-ng-click="showProfile($index)"
+                            data-ng-disabled="common.loggedIn && userRanking[0] == sessionData.currentUser.userName">
                         <small>{{userRanking[0] | uppercase}}</small>
                     </button>
                 </div>

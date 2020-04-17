@@ -1,6 +1,7 @@
 <div data-ng-controller="registerController" data-ng-init="init()">
 
-    <div class="modal fade" id="myModal">
+    <div class="modal fade"
+         id="myModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -11,10 +12,14 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text property-width">Username</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="theBatman"
-                            data-ng-model="tempUser.userName">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="theBatman"
+                               data-ng-model="tempUser.userName">
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="button" data-ng-click="checkAvailability()">
+                            <button class="btn btn-info"
+                                    type="button"
+                                    data-ng-click="checkAvailability()">
                                 Available?
                             </button>
                         </div>
@@ -23,36 +28,47 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text property-width">Password</span>
                         </div>
-                        <input type="password" class="form-control" placeholder="@@##$$%%"
-                            data-ng-model="tempUser.userPswd">
+                        <input type="password"
+                               class="form-control"
+                               placeholder="@@##$$%%"
+                               data-ng-model="tempUser.userPswd">
                     </div>
                     <div class="input-group mt-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text property-width">Confirm</span>
                         </div>
-                        <input type="password" class="form-control" placeholder="@@##$$%%"
-                            data-ng-model="tempUser.userPswdConfirm">
+                        <input type="password"
+                               class="form-control"
+                               placeholder="@@##$$%%"
+                               data-ng-model="tempUser.userPswdConfirm">
                     </div>
                     <div class="input-group mt-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text property-width">Mail</span>
                         </div>
-                        <input type="text" class="form-control" placeholder="bruce.wayne@batcave.com"
-                            data-ng-model="tempUser.userMail">
+                        <input type="text"
+                               class="form-control"
+                               placeholder="bruce.wayne@batcave.com"
+                               data-ng-model="tempUser.userMail">
                     </div>
                     <div class="input-group mt-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text property-width">About me</span>
                         </div>
-                        <textarea class="form-control" placeholder="I am Batman B)"
-                            data-ng-model="tempUser.userBio"></textarea>
+                        <textarea class="form-control"
+                                  placeholder="I am Batman B)"
+                                  data-ng-model="tempUser.userBio"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success" data-ng-click="registerUser()">
+                    <button type="button"
+                            class="btn btn-success"
+                            data-ng-click="registerUser()">
                         Confirm
                     </button>
-                    <button type="button" class="btn btn-danger" data-ng-click="cancelRegistration()">
+                    <button type="button"
+                            class="btn btn-danger"
+                            data-ng-click="cancelRegistration()">
                         Cancel
                     </button>
                 </div>
@@ -71,27 +87,37 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text property-width-sm"><small>Username</small></span>
                         </div>
-                        <input type="text" class="form-control" data-ng-model="userCreds.userName">
+                        <input type="text"
+                               class="form-control"
+                               data-ng-model="userCreds.userName">
                     </div>
                     <div class="input-group mt-2">
                         <div class="input-group-prepend">
                             <span class="input-group-text property-width-sm"><small>Password</small></span>
                         </div>
-                        <input type="password" class="form-control" data-ng-model="userCreds.userPswd">
+                        <input type="password"
+                               class="form-control"
+                               data-ng-model="userCreds.userPswd">
                     </div>
-                    <button class="btn btn-primary btn-block mt-2" data-ng-click="validateUser()">
+                    <button class="btn btn-primary btn-block mt-2"
+                            data-ng-click="validateUser()">
                         <small>Login</small>
                     </button>
-                    <button class="btn btn-primary btn-block mt-2" data-ng-click="resetCreds()">
+                    <button class="btn btn-primary btn-block mt-2"
+                            data-ng-click="resetCreds()">
                         <small>Reset</small>
                     </button>
                 </div>
             </div>
             <div>
-                <button class="btn btn-primary btn-block mt-2" data-toggle="modal" data-target="#myModal">
+                <button class="btn btn-primary btn-block mt-2"
+                        data-toggle="modal"
+                        data-target="#myModal">
                     <small>Not a member yet ? Sign up !</small>
                 </button>
-                <button class="btn btn-primary btn-block mt-2" data-toggle="modal" data-ng-click="skip()">
+                <button class="btn btn-primary btn-block mt-2"
+                        data-toggle="modal"
+                        data-ng-click="skip()">
                     <small>Skip for now !</small>
                 </button>
             </div>
