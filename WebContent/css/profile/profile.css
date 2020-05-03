@@ -37,6 +37,10 @@ hr {
     grid-template-columns: auto;
 }
 
+.padding-left {
+    padding-left: 0px;
+}
+
 @media screen and (max-width: 992px) {
     .grid-container {
         display: grid;
@@ -97,6 +101,9 @@ hr {
     .grid-container {
         display: grid;
         grid-template-columns: 45% 55%;
+    }
+    .padding-left {
+        padding-left: 10px;
     }
 }
 
